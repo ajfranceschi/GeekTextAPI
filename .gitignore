@@ -3,3 +3,6 @@ utils/DB_CREDS.py
 venv/lib/python3.9
 venv/bin
 venv/pyvenv.cfg
+venv/scripts/
+venv/include/
+venv/lib/site-packages
