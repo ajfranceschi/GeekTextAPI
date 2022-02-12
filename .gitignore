@@ -1,3 +1,12 @@
+## Default
 .idea/
-utils/DB_CREDS.py
 venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# DB credentials file
+utils/DB_CREDS.py
+
