@@ -1,8 +1,5 @@
 from flask import Flask, request, jsonify
-
-# Initialize Flask App
-app = Flask(__name__)
-
+from core import app
 
 
 # Root API route http://localhost:81/
