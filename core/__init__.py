@@ -5,4 +5,12 @@ from core.DB_CREDS import *
 app = Flask(__name__)
 
 # Configure Database connection
+# TODO: Create a file named DB_CREDS.py in /Core/
+#   Prior to connecting to DB, add the following to your /core/DB_CREDS.py file
+#   1.  USERNAME = %your MySQL Server username%
+#   2.  PASSWORD = %your MySQL Server password%
+#   3.  HOST = 'localhost'
+#   4.  DATABASE = 'geek_text_db'
+
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
