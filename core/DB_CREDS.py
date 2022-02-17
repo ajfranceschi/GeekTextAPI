@@ -1,5 +1,0 @@
-USERNAME = 'root'
-PASSWORD = 'Bebo9021!'
-HOST = 'localhost'
-DATABASE = 'geek_text_db'
-PORT = '3306'
