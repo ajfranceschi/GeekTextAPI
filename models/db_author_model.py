@@ -1,14 +1,9 @@
-from core import app
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-
-# Instantiate SQLAlchemy and Marshmallow
-db = SQLAlchemy(app)
-marshmallow = Marshmallow(app)
+from core import app, db, marshmallow
 
 
 # Authors table Model
 class Authors(db.Model):
+    __tablename__ = 'Authors'
     idAuthor = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     authorFirstName = db.Column(db.String(45), nullable=False)
     authorLastName = db.Column(db.String(150), nullable=False)
