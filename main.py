@@ -1,7 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-
-# Initialize Flask App
-app = Flask(__name__)
+from core import app
 
 
 
