@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from core import app
 
 
@@ -20,6 +20,11 @@ def process_get():
 def post():
     print(request.form)
     return jsonify({"hello": "You"})
+
+
+@app.route("/cart")
+def shopping_cart():
+    return render_template("shopping_cart.html")
 
 
 # function that starts the Flask listener.  App will be listening on localhost:81
