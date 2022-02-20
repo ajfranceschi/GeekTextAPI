@@ -8,5 +8,5 @@ __pycache__/
 *$py.class
 
 # DB credentials file
-utils/DB_CREDS.py
+core/DB_CREDS.py
 

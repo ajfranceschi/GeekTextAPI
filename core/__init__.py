@@ -11,7 +11,8 @@ app = Flask(__name__)
 #   1.  USERNAME = %your MySQL Server username%
 #   2.  PASSWORD = %your MySQL Server password%
 #   3.  HOST = 'localhost'
-#   4.  DATABASE = 'geek_text_db'
+#   4.  PORT = '3306'
+#   5.  DATABASE = 'geek_text_db'
 # Configure Database connection
 print(USERNAME, PASSWORD, HOST, PORT, DATABASE)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
