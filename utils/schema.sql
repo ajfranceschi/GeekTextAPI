@@ -171,6 +171,7 @@ CREATE TABLE Users
     first_name   varchar(255) NOT NULL,
     last_name    varchar(255) NOT NULL,
     username     varchar(45)  NOT NULL,
+    passwordU    varchar(255) DEFAULT NULL,
     emailAddress varchar(255) NOT NULL,
     addressLine1 varchar(255) DEFAULT NULL,
     addressLine2 varchar(255) DEFAULT NULL,
