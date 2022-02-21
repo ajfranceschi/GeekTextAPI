@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, render_template
+from flask import request, jsonify, render_template
 from core import app
 
-app = Flask(__name__, template_folder='templates')
 
 # Root API route http://localhost:81/
 @app.route('/', methods=['GET'])

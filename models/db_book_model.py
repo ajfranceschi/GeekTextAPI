@@ -1,4 +1,4 @@
-from core import app, db, marshmallow
+from core import db, marshmallow
 
 
 # Book model
