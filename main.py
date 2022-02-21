@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from core import app
 
+app = Flask(__name__, template_folder='templates')
 
 # Root API route http://localhost:81/
 @app.route('/', methods=['GET'])
@@ -25,6 +26,11 @@ def post():
 @app.route("/cart")
 def shopping_cart():
     return render_template("shopping_cart.html")
+
+
+@app.route("/comments")
+def comments_rating():
+    return render_template("comments_rate.html")
 
 
 # function that starts the Flask listener.  App will be listening on localhost:81
