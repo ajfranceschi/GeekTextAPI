@@ -23,4 +23,7 @@ db = SQLAlchemy(app)
 marshmallow = Marshmallow(app)
 
 from book_browsing_sorting import bkBrowseSort_bp
+from Rate_Com import comRate_bp
+
 app.register_blueprint(bkBrowseSort_bp)
+app.register_blueprint(comRate_bp)
