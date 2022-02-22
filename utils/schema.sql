@@ -1,5 +1,5 @@
 ###Schema
-DROP DATABASE geek_text_db;
+DROP DATABASE IF EXISTS geek_text_db;
 CREATE DATABASE geek_text_db;
 USE geek_text_db;
 
@@ -183,16 +183,16 @@ CREATE TABLE Users
 
 -- Users table data:
 
-INSERT INTO Users (idUsers, first_name, last_name, username, emailAddress, addressLine1, addressLine2, city, state,
+INSERT INTO Users (idUsers, first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city, state,
                    zipcode)
-VALUES (1, 'Diamond', 'Forbes', 'diamond', 'dforbes@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
-       (2, 'Kevin', 'Forero', 'kforero', 'kforero@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
-       (3, 'Antonio', 'Franceschi', 'afranceschi', 'afranceschi@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
+VALUES (1, 'Diamond', 'Forbes', 'diamond', NULL, 'dforbes@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
+       (2, 'Kevin', 'Forero', 'kforero', NULL, 'kforero@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
+       (3, 'Antonio', 'Franceschi', 'afranceschi', NULL, 'afranceschi@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
         33199),
-       (4, 'Ariadna', 'Franchino', 'afranchino', 'afranchino@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
+       (4, 'Ariadna', 'Franchino', 'afranchino', NULL, 'afranchino@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
         33199),
-       (5, 'Nicole', 'Gentil', 'ngentil', 'ngentil@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
-       (6, 'Carlos', 'Gonzalez', 'cmdelapaz', 'cgonz683@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199);
+       (5, 'Nicole', 'Gentil', 'ngentil', NULL, 'ngentil@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
+       (6, 'Carlos', 'Gonzalez', 'cmdelapaz', NULL, 'cgonz683@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199);
 
 -- Wish List Items table structure
 CREATE TABLE WishListItems
