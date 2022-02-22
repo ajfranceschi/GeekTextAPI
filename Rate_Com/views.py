@@ -13,7 +13,7 @@ def getComments():
     return {"Route": "Get Comments Route"}
 
 
-@comRate_bp.route('/getAllCommnets')
+@comRate_bp.route('/getAllComments')
 def getAllComments():
     comments = RatingComments.query.all()
     return jsonify(ratingComments_many_schema.dump(comments))
