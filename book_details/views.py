@@ -8,7 +8,7 @@ def index():
     return "Books details Feature"
 
 
-@bookD_bp.route('/allBooks')
-def allBooks():
+@bookD_bp.route('/getBookDetails')
+def getBooks():
     books = Books.query.all()
     return jsonify(books_schema.dump(books))

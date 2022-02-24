@@ -26,8 +26,10 @@ from book_browsing_sorting import bkBrowseSort_bp
 from Rate_Com import comRate_bp
 from shopping_cart import cart_bp
 from profile_management import profman_bp
+from book_details import bookD_bp
 
 app.register_blueprint(bkBrowseSort_bp)
 app.register_blueprint(comRate_bp)
 app.register_blueprint(cart_bp)
 app.register_blueprint(profman_bp)
+app.register_blueprint(bookD_bp)
