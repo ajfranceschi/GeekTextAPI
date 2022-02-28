@@ -14,7 +14,6 @@ app = Flask(__name__)
 #   4.  PORT = '3306'
 #   5.  DATABASE = 'geek_text_db'
 # Configure Database connection
-print(USERNAME, PASSWORD, HOST, PORT, DATABASE)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
