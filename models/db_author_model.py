@@ -5,7 +5,7 @@ from core import app, db, marshmallow
 class Authors(db.Model):
     __tablename__ = 'Authors'
     idAuthor = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-    authorFirstName = db.Column(db.String(45), nullable=False)
+    authorFirstName = db.Column(db.String(45) , nullable=False)
     authorLastName = db.Column(db.String(150), nullable=False)
     authorPublisher = db.Column(db.String(255))
     authorBiography = db.Column(db.Text)
