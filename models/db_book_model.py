@@ -40,16 +40,16 @@ class BooksSchema(marshmallow.Schema):
     bookPrice = fields.Number()
     bookGenre = fields.Str()
     bookPublisher = fields.Str()
-    bookYearPublished = fields.Number()
-    unitsSold = fields.Number()
+    bookYearPublished = fields.Int()
+    unitsSold = fields.Int()
     bookRating = fields.Number()
     author = fields.Nested(db_author_model.AuthorSchema)
 
     class Meta:
-        fields = ('isbn', 'idAuthor', 'bookTitle', 'bookDescription',
+        fields = ('isbn', 'author', 'bookTitle', 'bookDescription',
                   'bookPrice', 'bookGenre', 'bookPublisher', 'bookYearPublished',
-                  'unitsSold', 'bookRating', 'author')
+                  'unitsSold', 'bookRating')
 
 
-book_schema = BooksSchema()
-books_schema = BooksSchema(many=True)
+bookSchema = BooksSchema()
+booksSchema = BooksSchema(many=True)
