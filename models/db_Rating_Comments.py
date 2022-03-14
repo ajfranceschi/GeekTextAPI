@@ -18,12 +18,12 @@ class RatingComments(db.Model):
     status = db.Column(TINYINT, nullable=False)
 
 
-# JSON Schema
 class RatingsCommentsSchema(marshmallow.Schema):
     class Meta:
         fields = (
         'idRatingComments', 'isbn', 'idUsers', 'ratingNumber', 'title', 'comments', 'createdAt', 'modifiedAt', 'status')
 
+varlist = {'isbn', 'ratingNumber', 'createdAt'}
 
 ratingComments_schema = RatingsCommentsSchema()
 ratingComments_many_schema = RatingsCommentsSchema(many=True)
