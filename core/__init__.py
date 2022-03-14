@@ -14,7 +14,6 @@ app = Flask(__name__)
 #   4.  PORT = '3306'
 #   5.  DATABASE = 'geek_text_db'
 # Configure Database connection
-print(USERNAME, PASSWORD, HOST, PORT, DATABASE)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -25,7 +24,11 @@ marshmallow = Marshmallow(app)
 from book_browsing_sorting import bkBrowseSort_bp
 from Rate_Com import comRate_bp
 from shopping_cart import cart_bp
+from profile_management import profman_bp
+from book_details import bookD_bp
 
 app.register_blueprint(bkBrowseSort_bp)
 app.register_blueprint(comRate_bp)
 app.register_blueprint(cart_bp)
+app.register_blueprint(profman_bp)
+app.register_blueprint(bookD_bp)

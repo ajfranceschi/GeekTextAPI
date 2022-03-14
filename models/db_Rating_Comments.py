@@ -4,9 +4,10 @@ from datetime import datetime
 
 
 # Authors table Model
-class RatingsComments(db.Model):
-    __tablename__ = 'RatingsComments'
-    idRatingComments = db.Column(db.Integer, db.ForeignKey("Books.isbn"), primary_key=True, autoincrement=True, nullable=False)
+class RatingComments(db.Model):
+    __tablename__ = 'RatingComments'
+    idRatingComments = db.Column(db.Integer, db.ForeignKey("Books.isbn"), primary_key=True, autoincrement=True,
+                                 nullable=False)
     isbn = db.Column(db.String(55), nullable=False)
     idUsers = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable=False)
     ratingNumber = db.Column(db.Integer, nullable=False)
@@ -17,12 +18,12 @@ class RatingsComments(db.Model):
     status = db.Column(TINYINT, nullable=False)
 
 
-# JSON Schema
 class RatingsCommentsSchema(marshmallow.Schema):
     class Meta:
-        fields = ('idRatingComments', 'isbn', 'idUsers', 'ratingNumber', 'title', 'comments', 'createdAt', 'modifiedAt', 'status')
+        fields = (
+        'idRatingComments', 'isbn', 'idUsers', 'ratingNumber', 'title', 'comments', 'createdAt', 'modifiedAt', 'status')
 
+varlist = {'isbn', 'ratingNumber', 'createdAt'}
 
 ratingComments_schema = RatingsCommentsSchema()
 ratingComments_many_schema = RatingsCommentsSchema(many=True)
-
