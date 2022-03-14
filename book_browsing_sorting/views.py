@@ -24,8 +24,16 @@ def top_ten_books_sold():
     #    Sort by unitsSold decreasing
     booksQuery = Books.query.all()
     books: list = booksSchema.dump(booksQuery)
-    sortedBooks = sorted(books, key=sortByUnitsSold, reverse=True)
-    return jsonify(sortedBooks)
+    sortedBooks = sorted(books, key=sortByUnitsSold, reverse=True)\
+
+    # check size of sortedBooks.  If greater than 10, return only top ten, else return sorted books
+    if len(sortedBooks) > 10:
+        topTenBooks = []
+        for idx in range(0, 10, 1):
+            topTenBooks.append(sortedBooks[idx])
+        return jsonify(topTenBooks)
+    else:
+        return jsonify(sortedBooks)
 
 
 # UTILITY FUNCTIONS

@@ -56,7 +56,25 @@ VALUES ('9780567830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
         47, 'Electronic', 'Bradford, West Yorkshire : Emerald Publishing Limited', 2020, 2, 5),
        ('9781839822834', 2, 'The Fourth Industrial Revolution (Industry 4. 0)',
         'Exploring blockchain implementation in the supply chain --\r\nIndustry 4.0 adoption as a moderator of the impact of lean production practices on operational performance improvement --\r\nUnderstanding supply chain analytics capabilities and agility for data-rich environments --\r\nThe interplay between smart manufacturing technologies and work organization --\r\nThe impact of 3D printing implementation on stock returns --\r\nLeveraging open-standard interorganizational information systems for process adaptability and alignment --\r\nBlockchain-driven customer order management',
-        34.99, 'Electronic', 'Bradford, West Yorkshire : Emerald Publishing Limited', 2019, 1, 5);
+        34.99, 'Electronic', 'Bradford, West Yorkshire : Emerald Publishing Limited', 2019, 1, 5),
+       ('9780568830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
+        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 10, 4.5),
+       ('9780570830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
+        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 25, 4.5),
+       ('9780590830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
+        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 29, 4.5),
+       ('9780578830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
+        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 32, 4.5),
+       ('9780582830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
+        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 22, 4.5),
+       ('9780585830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
+        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 31, 4.5);
 
 -- Rating Comments table structure
 CREATE TABLE RatingComments
