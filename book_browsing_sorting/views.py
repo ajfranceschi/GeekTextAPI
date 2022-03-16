@@ -24,7 +24,7 @@ def top_ten_books_sold():
     #    Sort by unitsSold decreasing
     booksQuery = Books.query.all()
     books: list = booksSchema.dump(booksQuery)
-    sortedBooks = sorted(books, key=sortByUnitsSold, reverse=True)\
+    sortedBooks = sorted(books, key = sortByUnitsSold, reverse = True)
 
     # check size of sortedBooks.  If greater than 10, return only top ten, else return sorted books
     if len(sortedBooks) > 10:
