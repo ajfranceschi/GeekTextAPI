@@ -33,22 +33,22 @@ def db_seed():
 
 @cart_bp.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    isbn=request.form['isbn']
-    test= ShoppingCartItems.query.filter_by(isbn=isbn).first()
+    isbn = request.form['isbn']
+    test = ShoppingCartItems.query.filter_by(isbn=isbn).first()
     if test:
-        return jsonify(message='That Item is already in your shopping cart.'),409
+        return jsonify(message='That Item is already in your shopping cart.'), 409
     else:
-        id_cart=request.form['idShoppingCart']
-        id_items=request.form['idShoppingCartItems']
-        cart_items=ShoppingCartItems(isbn=isbn, idShoppingCart=id_cart, idShoppingCartItems=id_items)
+        id_cart = request.form['idShoppingCart']
+        id_items = request.form['idShoppingCartItems']
+        cart_items = ShoppingCartItems(isbn=isbn, idShoppingCart=id_cart, idShoppingCartItems=id_items)
         db.session.add(cart_items)
         db.session.commit()
-        return jsonify(message='Items was successfully add to the cart'),201
+        return jsonify(message='Items was successfully add to the cart'), 201
 
 
 @cart_bp.route('/get_cart_items', methods=['GET'])
 def get_cart_items():
-    cart_items_query = ShoppingCartItems.query.all()
-    cart_items_list = ShoppingCartItems_many_schema(cart_items_query)
-    return jsonify(cart_items_list.data)
+    items = ShoppingCartItems.query.all()
+    return jsonify(ShoppingCartItems_many_schema(items))
+
 
