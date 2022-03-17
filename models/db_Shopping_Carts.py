@@ -9,9 +9,9 @@ class ShoppingCart(db.Model):
     idUser = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable=False)
 
 
-def __init__(self, idShoppingCart, idUser):
-    self.idShoppingCart = idShoppingCart
-    self.idUser = idUser
+def __init__(self, id_shopping_cart, id_user):
+    self.idShoppingCart = id_shopping_cart
+    self.idUser = id_user
 
 
 # JSON Schema
