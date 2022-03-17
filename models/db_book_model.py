@@ -1,3 +1,5 @@
+from flask import jsonify
+
 from core import db, marshmallow
 from marshmallow import fields
 from . import db_author_model
@@ -31,6 +33,20 @@ class Books(db.Model):
         self.unitsSold = unitsSold
         self.bookRating = bookRating
 
+    def getABook(_isbn):
+        queryBook = Books.query.filter_by(isbn=_isbn).first()
+        bookReturned = booksSchema.dump(queryBook)
+        return bookReturned
+
+    def createBook(_isbn, _idAuthors, _bookTitle, _bookDescription, _bookPrice, _bookGenre, _bookPublisher,
+                   _bookYearPublished, _unitsSold, _bookRating):
+        new_book = Books(isbn=_isbn, idAuthors=_idAuthors, bookTitle=_bookTitle, bookDescription=_bookDescription,
+                         bookPrice=_bookPrice, bookGenre=_bookGenre, bookPublisher=_bookPublisher,
+                         bookYearPublished=_bookYearPublished,
+                         unitsSold=_unitsSold, bookRating=_bookRating)
+        db.session.add(new_book)
+        db.session.commit()
+
 
 class BooksSchema(marshmallow.Schema):
     isbn = fields.Int()
@@ -50,6 +66,9 @@ class BooksSchema(marshmallow.Schema):
                   'bookPrice', 'bookGenre', 'bookPublisher', 'bookYearPublished',
                   'unitsSold', 'bookRating')
 
+
+varList = {'isbn', 'author', 'bookTitle', 'bookDescription', 'bookPrice', 'bookGenre', 'bookPublisher',
+           'bookYearPublished', 'unitsSold', 'bookRating'}
 
 bookSchema = BooksSchema()
 booksSchema = BooksSchema(many=True)
