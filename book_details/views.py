@@ -1,4 +1,4 @@
-from flask import jsonify, request, Response, make_response
+from flask import jsonify, request, Response, abort
 from . import bookD_bp
 from models.db_book_model import Books, booksSchema, varList, BooksSchema
 
@@ -28,7 +28,5 @@ def addBook():
 
 @bookD_bp.route('/getABook/<string:isbn>/', methods=['GET'])
 def getABook(isbn):
-    queryBook = Books.query.filter_by(isbn=isbn).first()
-    bookSchema = BooksSchema(many=True, only=varList)
-    bookReturned = bookSchema.dump(queryBook)
-    return jsonify(bookReturned)
+    returnBook = Books.fetchABook(isbn)
+    return jsonify(returnBook)
