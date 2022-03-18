@@ -30,3 +30,8 @@ def addBook():
 def getABook(isbn):
     returnBook = Books.fetchABook(isbn)
     return jsonify(returnBook)
+
+@bookD_bp.route('getBooksByAuthor/<int:idAuthors>', methods=['GET'])
+def getBooksByAuthor(idAuthors):
+    returnBooks = Books.fetchListBooksByAuthor(idAuthors)
+    return jsonify(returnBooks)
