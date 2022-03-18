@@ -33,6 +33,7 @@ class Books(db.Model):
         self.unitsSold = unitsSold
         self.bookRating = bookRating
 
+    # Retrieve a book’s details by the ISBN
     def fetchABook(isbn):
         queryBook = Books.query.filter_by(isbn=isbn).one_or_none()
         if queryBook is not None:
@@ -43,6 +44,17 @@ class Books(db.Model):
         else:
             abort(404, 'Book not found for ID: {isbn}'.format(isbn=isbn))
 
+    # Retrieve a list of books associate with an author
+    def fetchListBooksByAuthor(idAuthor):
+        queryBooks = Books.query.filter_by(idAuthors=idAuthor).all()
+        if queryBooks:
+            bookSchema = BooksSchema(many=True)
+            booksReturned = bookSchema.dump(queryBooks)
+            return booksReturned
+        else:
+            abort(404, 'Author not found for ID: {idAuthors}'.format(idAuthors=idAuthor))
+
+    # Create a book with all the attributes
     def createBook(_isbn, _idAuthors, _bookTitle, _bookDescription, _bookPrice, _bookGenre, _bookPublisher,
                    _bookYearPublished, _unitsSold, _bookRating):
         new_book = Books(isbn=_isbn, idAuthors=_idAuthors, bookTitle=_bookTitle, bookDescription=_bookDescription,
