@@ -1,8 +1,7 @@
 from flask import jsonify, abort
-
 from core import db, marshmallow
 from marshmallow import fields
-from . import db_author_model
+from models.db_author_model import AuthorSchema
 
 
 # Book model
@@ -18,7 +17,7 @@ class Books(db.Model):
     bookYearPublished = db.Column(db.Integer, nullable=False)
     unitsSold = db.Column(db.Integer)
     bookRating = db.Column(db.Float)
-    author = db.relationship('Authors', backref=db.backref('Authors', lazy='dynamic'))
+    author = db.relationship('Authors', backref = db.backref('Authors', lazy = 'dynamic'))
 
     def __init__(self, isbn, idAuthors, bookTitle, bookDescription, bookPrice, bookGenre, bookPublisher,
                  bookYearPublished, unitsSold, bookRating):
@@ -33,6 +32,7 @@ class Books(db.Model):
         self.unitsSold = unitsSold
         self.bookRating = bookRating
 
+
     # Retrieve a book’s details by the ISBN
     def fetchABook(isbn):
         queryBook = Books.query.filter_by(isbn=isbn).one_or_none()
@@ -43,6 +43,7 @@ class Books(db.Model):
             # return jsonify(bookReturned)
         else:
             abort(404, 'Book not found for ID: {isbn}'.format(isbn=isbn))
+            
 
     # Retrieve a list of books associate with an author
     def fetchListBooksByAuthor(idAuthor):
@@ -57,10 +58,11 @@ class Books(db.Model):
     # Create a book with all the attributes
     def createBook(_isbn, _idAuthors, _bookTitle, _bookDescription, _bookPrice, _bookGenre, _bookPublisher,
                    _bookYearPublished, _unitsSold, _bookRating):
-        new_book = Books(isbn=_isbn, idAuthors=_idAuthors, bookTitle=_bookTitle, bookDescription=_bookDescription,
-                         bookPrice=_bookPrice, bookGenre=_bookGenre, bookPublisher=_bookPublisher,
-                         bookYearPublished=_bookYearPublished,
-                         unitsSold=_unitsSold, bookRating=_bookRating)
+        new_book = Books(isbn = _isbn, idAuthors = _idAuthors, bookTitle = _bookTitle,
+                         bookDescription = _bookDescription,
+                         bookPrice = _bookPrice, bookGenre = _bookGenre, bookPublisher = _bookPublisher,
+                         bookYearPublished = _bookYearPublished,
+                         unitsSold = _unitsSold, bookRating = _bookRating)
         db.session.add(new_book)
         db.session.commit()
 
@@ -76,7 +78,7 @@ class BooksSchema(marshmallow.Schema):
     bookYearPublished = fields.Int()
     unitsSold = fields.Int()
     bookRating = fields.Number()
-    author = fields.Nested(db_author_model.AuthorSchema)
+    author = fields.Nested(AuthorSchema)
 
     class Meta:
         fields = ('isbn', 'author', 'bookTitle', 'bookDescription',
@@ -88,4 +90,4 @@ varList = {'isbn', 'author', 'bookTitle', 'bookDescription', 'bookPrice', 'bookG
            'bookYearPublished', 'unitsSold', 'bookRating'}
 
 bookSchema = BooksSchema()
-booksSchema = BooksSchema(many=True)
+booksSchema = BooksSchema(many = True)
