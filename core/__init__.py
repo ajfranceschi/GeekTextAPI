@@ -1,5 +1,5 @@
 from flask import Flask
-from core.DB_CREDS import USERNAME, PASSWORD, HOST, PORT, DATABASE
+from core.DB_CREDS import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
@@ -14,7 +14,8 @@ app = Flask(__name__)
 #   4.  PORT = '3306'
 #   5.  DATABASE = 'geek_text_db'
 # Configure Database connection
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{DIG_OCEAN_UN}:{DIG_OCEAN_PW}@{DIG_OCEAN_HOST}:{DIG_OCEAN_PORT}/{DIG_OCEAN_DB}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Instantiate SQLAlchemy and Marshmallow
