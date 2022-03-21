@@ -1,5 +1,5 @@
 from flask import Flask
-from core.DB_CREDS import USERNAME, PASSWORD, HOST, PORT, DATABASE
+from core.DB_CREDS import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
@@ -14,7 +14,9 @@ app = Flask(__name__)
 #   4.  PORT = '3306'
 #   5.  DATABASE = 'geek_text_db'
 # Configure Database connection
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+# 'SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{DIG_OCEAN_UN}:{DIG_OCEAN_PW}@{DIG_OCEAN_HOST}:{DIG_OCEAN_PORT}/{DIG_OCEAN_DB}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Instantiate SQLAlchemy and Marshmallow
@@ -26,9 +28,11 @@ from Rate_Com import comRate_bp
 from shopping_cart import cart_bp
 from profile_management import profman_bp
 from book_details import bookD_bp
+from authors import author_bp
 
 app.register_blueprint(bkBrowseSort_bp)
 app.register_blueprint(comRate_bp)
 app.register_blueprint(cart_bp)
 app.register_blueprint(profman_bp)
 app.register_blueprint(bookD_bp)
+app.register_blueprint(author_bp)
