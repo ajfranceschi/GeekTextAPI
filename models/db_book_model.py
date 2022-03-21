@@ -7,18 +7,19 @@ from models.db_author_model import AuthorSchema
 # Book model
 class Books(db.Model):
     __tablename__ = 'Books'
-    isbn = db.Column(db.String(55), primary_key=True, nullable=False)
-    idAuthors = db.Column(db.Integer, db.ForeignKey('Authors.idAuthors'), nullable=False)
-    bookTitle = db.Column(db.String(100), nullable=False)
-    bookDescription = db.Column(db.Text, nullable=True)
-    bookPrice = db.Column(db.Float, nullable=False)
-    bookGenre = db.Column(db.String(80), nullable=False)
-    bookPublisher = db.Column(db.String(255), nullable=False)
-    bookYearPublished = db.Column(db.Integer, nullable=False)
+    isbn = db.Column(db.String(55), primary_key = True, nullable = False)
+    idAuthors = db.Column(db.Integer, db.ForeignKey('Authors.idAuthors'), nullable = False)
+    bookTitle = db.Column(db.String(100), nullable = False)
+    bookDescription = db.Column(db.Text, nullable = True)
+    bookPrice = db.Column(db.Float, nullable = False)
+    bookGenre = db.Column(db.String(80), nullable = False)
+    bookPublisher = db.Column(db.String(255), nullable = False)
+    bookYearPublished = db.Column(db.Integer, nullable = False)
     unitsSold = db.Column(db.Integer)
     bookRating = db.Column(db.Float)
     author = db.relationship('Authors', backref = db.backref('Authors', lazy = 'dynamic'))
 
+    # Constructor
     def __init__(self, isbn, idAuthors, bookTitle, bookDescription, bookPrice, bookGenre, bookPublisher,
                  bookYearPublished, unitsSold, bookRating):
         self.isbn = isbn
@@ -32,28 +33,26 @@ class Books(db.Model):
         self.unitsSold = unitsSold
         self.bookRating = bookRating
 
-
     # Retrieve a book’s details by the ISBN
     def fetchABook(isbn):
-        queryBook = Books.query.filter_by(isbn=isbn).one_or_none()
+        queryBook = Books.query.filter_by(isbn = isbn).one_or_none()
         if queryBook is not None:
-            bookSchema = BooksSchema(many=False)
+            bookSchema = BooksSchema(many = False)
             bookReturned = bookSchema.dump(queryBook)
             return bookReturned
             # return jsonify(bookReturned)
         else:
-            abort(404, 'Book not found for ID: {isbn}'.format(isbn=isbn))
-            
+            abort(404, 'Book not found for ID: {isbn}'.format(isbn = isbn))
 
     # Retrieve a list of books associate with an author
     def fetchListBooksByAuthor(idAuthor):
-        queryBooks = Books.query.filter_by(idAuthors=idAuthor).all()
+        queryBooks = Books.query.filter_by(idAuthors = idAuthor).all()
         if queryBooks:
-            bookSchema = BooksSchema(many=True)
+            bookSchema = BooksSchema(many = True)
             booksReturned = bookSchema.dump(queryBooks)
             return booksReturned
         else:
-            abort(404, 'Author not found for ID: {idAuthors}'.format(idAuthors=idAuthor))
+            abort(404, 'Author not found for ID: {idAuthors}'.format(idAuthors = idAuthor))
 
     # Create a book with all the attributes
     def createBook(_isbn, _idAuthors, _bookTitle, _bookDescription, _bookPrice, _bookGenre, _bookPublisher,
