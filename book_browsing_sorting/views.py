@@ -79,7 +79,6 @@ def get_books():
             quantity = int(request.args['quantity'])
             # validate quantity is an int:
             if type(quantity) == int and quantity > 0:
-                # TODO: Get n Books starting at n index
                 books = getBooksStartingAt(quantity)
                 if books == "error":  # Error connecting to DB
                     return SERVER_ERROR
