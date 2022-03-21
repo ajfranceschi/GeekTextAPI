@@ -15,7 +15,8 @@ app = Flask(__name__)
 #   5.  DATABASE = 'geek_text_db'
 # Configure Database connection
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{DIG_OCEAN_UN}:{DIG_OCEAN_PW}@{DIG_OCEAN_HOST}:{DIG_OCEAN_PORT}/{DIG_OCEAN_DB}"
+    'SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+# 'SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{DIG_OCEAN_UN}:{DIG_OCEAN_PW}@{DIG_OCEAN_HOST}:{DIG_OCEAN_PORT}/{DIG_OCEAN_DB}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Instantiate SQLAlchemy and Marshmallow
