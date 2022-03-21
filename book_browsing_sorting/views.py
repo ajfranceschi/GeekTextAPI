@@ -1,5 +1,5 @@
 from flask import jsonify, abort, request, Response
-from . import bkBrowseSort_bp, Book
+from . import bkBrowseSort_bp
 from models.db_book_model import Books, booksSchema
 
 # CONSTANTS
