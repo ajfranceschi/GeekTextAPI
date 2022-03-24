@@ -16,7 +16,7 @@ def __init__(self, id_shopping_carts, isbn):
     self.isbn = isbn
 
 
-def addItemToCart(isbn: str, idUsers: str):
+def addItemToCart(isbn: str, idUsers: str ):
     cart = None
     # check for existence of cart
     try:
@@ -27,18 +27,43 @@ def addItemToCart(isbn: str, idUsers: str):
 
     if len(cart) > 0:
         idShoppingCarts = cart[0].idShoppingCarts
-        cart_items = ShoppingCartItems(idShoppingCarts = idShoppingCarts, isbn = isbn)
+        cart_item = ShoppingCartItems(idShoppingCarts = idShoppingCarts, isbn = isbn)
 
         try:
-            db.session.add(cart_items)
+            db.session.add(cart_item)
             db.session.commit()
-            result = ShoppingCartItems.query.filter_by(idShoppingCarts = idShoppingCarts)
+            result = ShoppingCartItems.query.filter_by(idShoppingCarts=idShoppingCarts)
             return ShoppingCartItems_many_schema.dump(result)
         except Exception as e:
             return e
     else:
-        # TODO: Create cart for user
+        newCart = ShoppingCarts(idUsers=idUsers)
+        try:
+            db.session.add(newCart)
+            db.session.commit()
+            print(newCart.idShoppingCarts)
+        except Exception as e:
+            return e
         return "User does not have a cart"
+
+
+def removeItemFromCart(isbn: str):
+    item = ShoppingCartItems.query.filter_by(isbn=isbn).first()
+    if item:
+        try:
+            db.session.delete(item)
+            db.session.commit()
+        except Exception as e:
+            return e
+        return "Item was remove from your shopping cart", 202
+
+
+def getItems(idShoppingCarts: int ):
+    try:
+        items = ShoppingCartItems.query.filter_by(idShoppingCarts=idShoppingCarts).all()
+    except Exception as e:
+        return e
+    return ShoppingCartItems_many_schema.dump(items)
 
 
 # JSON Schema

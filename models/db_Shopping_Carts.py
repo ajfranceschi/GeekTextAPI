@@ -8,8 +8,7 @@ class ShoppingCarts(db.Model):
     idUsers = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable = False)
 
 
-def __init__(self, id_shopping_carts, id_users):
-    self.idShoppingCarts = id_shopping_carts
+def __init__(self, id_users):
     self.idUsers = id_users
 
 
