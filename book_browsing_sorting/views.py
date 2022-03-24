@@ -1,6 +1,7 @@
-from flask import jsonify, abort, request
+from flask import jsonify, request
+
+from models.db_book_model import booksSchema
 from . import bkBrowseSort_bp, book_browsing_util
-from models.db_book_model import Books, booksSchema
 
 # CONSTANTS
 SERVER_ERROR = "Could not complete the request. Please try again later", 500
@@ -74,23 +75,23 @@ def index():
 @bkBrowseSort_bp.route('/get-books')
 def get_books():
     if len(request.args) > 0:
-        quantity = None
         try:
             quantity = int(request.args['quantity'])
             # validate quantity is an int:
             if type(quantity) == int and quantity > 0:
-                books = BookBrowsing.getBooksStartingAt(quantity)
+                books = book_browsing_util.getBooksStartingAt(quantity)
                 if books == "error":  # Error connecting to DB
                     return SERVER_ERROR
                 elif books == "request-error":  # quantity provided is greater than amount of books in DB
-                    return f"Quantity parameter should be less than {len(BookBrowsing.getAllBooks()) + 1}."
+                    return f"Quantity parameter should be less than {len(book_browsing_util.getAllBooks()) + 1}."
                 return jsonify(books)
             else:
                 return QUANTITY_ERROR
-        except Exception as e:
+        except ValueError as e:
+            print(e)
             return PARAM_ERROR
     else:
-        books = BookBrowsing.getAllBooks()
+        books = book_browsing_util.getAllBooks()
         if books == "error":
             return SERVER_ERROR
         return jsonify(booksSchema.dump(books)), 200
@@ -99,7 +100,7 @@ def get_books():
 # Book Browsing and Sorting / Get top 10 books sold endpoint: (*/book-browsing-sorting/top-ten-books-sold)
 @bkBrowseSort_bp.route('/top-ten')
 def top_ten_books_sold():
-    booksQuery = BookBrowsing.getAllBooks()
+    booksQuery = book_browsing_util.getAllBooks()
 
     if booksQuery == "error":
         return 'There was an error getting the list. Please try again later.', 500

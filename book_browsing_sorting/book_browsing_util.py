@@ -4,7 +4,8 @@
 # This file will hod the database queries for GeekText API
 # Book Browsing and Sorting feature
 # ===============================================================
-from models.db_book_model import Books, booksSchema, bookSchema
+from models.db_book_model import Books, booksSchema
+from sqlalchemy.exc import SQLAlchemyError
 
 
 # Get all books currently in the database
@@ -12,7 +13,7 @@ def getAllBooks(arg: int = 0):
     if arg == 0:
         try:
             return Books.query.all()
-        except Exception as e:
+        except SQLAlchemyError as e:
             print(e)
             return "error"
 
