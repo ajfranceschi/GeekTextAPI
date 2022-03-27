@@ -74,7 +74,13 @@ def index():
 # Book Browsing and Sorting / Get All Books endpoint: (*/book-browsing-sorting/get-books)
 @bkBrowseSort_bp.route('/get-books')
 def get_books():
+    params = request.args
+    print(len(params))
+
+    ## include arguments
     if len(request.args) > 0:
+        for param in params:
+            print(param)
         try:
             quantity = int(request.args['quantity'])
             # validate quantity is an int:

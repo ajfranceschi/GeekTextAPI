@@ -39,3 +39,5 @@ def getBooksStartingAt(position: int):
             return "request-error"
     else:
         return booksQueryResult
+
+# TODO: books by genre, particular rating and higher
