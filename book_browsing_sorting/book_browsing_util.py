@@ -9,7 +9,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 
 # Get all books currently in the database
-def getAllBooks(arg: int = 0):
+def getBooks(arg: int = 0):
     if arg == 0:
         try:
             return Books.query.all()
@@ -20,7 +20,7 @@ def getAllBooks(arg: int = 0):
 
 def getBooksStartingAt(position: int):
     selection: list = []
-    booksQueryResult = getAllBooks()
+    booksQueryResult = getBooks()
     booksQueryLength = len(booksQueryResult)
 
     if booksQueryResult != "error":
@@ -39,5 +39,15 @@ def getBooksStartingAt(position: int):
             return "request-error"
     else:
         return booksQueryResult
+
+
+def booksByGenre(genre: str):
+    books = getBooks()
+    res = []
+    for book in books:
+        if book['bookGenre'] == genre:
+            res.append(book)
+
+    return res
 
 # TODO: books by genre, particular rating and higher

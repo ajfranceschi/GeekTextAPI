@@ -89,7 +89,7 @@ def get_books():
                 if books == "error":  # Error connecting to DB
                     return SERVER_ERROR
                 elif books == "request-error":  # quantity provided is greater than amount of books in DB
-                    return f"Quantity parameter should be less than {len(book_browsing_util.getAllBooks()) + 1}."
+                    return f"Quantity parameter should be less than {len(book_browsing_util.getBooks()) + 1}."
                 return jsonify(books)
             else:
                 return QUANTITY_ERROR
@@ -97,7 +97,7 @@ def get_books():
             print(e)
             return PARAM_ERROR
     else:
-        books = book_browsing_util.getAllBooks()
+        books = book_browsing_util.getBooks()
         if books == "error":
             return SERVER_ERROR
         return jsonify(booksSchema.dump(books)), 200
@@ -106,7 +106,7 @@ def get_books():
 # Book Browsing and Sorting / Get top 10 books sold endpoint: (*/book-browsing-sorting/top-ten-books-sold)
 @bkBrowseSort_bp.route('/top-ten')
 def top_ten_books_sold():
-    booksQuery = book_browsing_util.getAllBooks()
+    booksQuery = book_browsing_util.getBooks()
 
     if booksQuery == "error":
         return 'There was an error getting the list. Please try again later.', 500
