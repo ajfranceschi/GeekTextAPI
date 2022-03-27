@@ -26,17 +26,16 @@ def getUserInfo(username):
 
 @profman_bp.route('/addUser', methods=['POST'])
 def addUser():
-    first_name = request.args.get('first_name')
-    last_name = request.args.get('last_name')
-    username = request.args.get('username')
-    passwordU = request.args.get('passwordU')
-    emailAddress = request.args.get('emailAddress')
-    addressLine1 = request.args.get('addressLine1')
-    addressLine2 = request.args.get('addressLine2')
-    city = request.args.get('city')
-    state = request.args.get('state')
-    zipcode = request.args.get('zipcode')
-
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    username = request.form['username']
+    passwordU = request.form['passwordU']
+    emailAddress = request.form['emailAddress']
+    addressLine1 = request.form['addressLine1']
+    addressLine2 = request.form['addressLine2']
+    city = request.form['city']
+    state = request.form['state']
+    zipcode = request.form['zipcode']
 
     Users.createUser(first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city, state, zipcode)
     response = Response("New User added!", 200, mimetype='application/json')
