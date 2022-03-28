@@ -50,9 +50,9 @@ def booksByGenre(genre: str):
     return res
 
 
-def booksWithRatingAtOrAbove(rating: float):
-    books: dict = getBooks()
-    res: list = []
+def booksWithRatingAtOrAbove(rating):
+    books = booksSchema.dump(getBooks())
+    res = []
     for book in books:
         if book['bookRating'] >= rating:
             res.append(book)

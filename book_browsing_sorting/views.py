@@ -79,6 +79,13 @@ def books_by_genre():
     return jsonify(books)
 
 
+@bkBrowseSort_bp.route('by-rating', methods = ['GET'])
+def by_rating():
+    rating = float(request.args['rating'])
+    books = book_browsing_util.booksWithRatingAtOrAbove(rating)
+    return jsonify(books)
+
+
 # UTILITY FUNCTIONS
 def sortByUnitsSold(book: dict):
     return book["unitsSold"]
