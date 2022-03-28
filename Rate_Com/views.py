@@ -1,9 +1,5 @@
-from flask import jsonify, request, flash
-from flask_marshmallow import fields
-from sqlalchemy import func, update, insert
-from sqlalchemy.orm import query
-from sqlalchemy.sql import Insert
-
+from flask import jsonify
+from sqlalchemy import func, update
 from core import db
 from . import comRate_bp
 from models.db_Rating_Comments import RatingComments, ratingComments_many_schema, combineSchemas
@@ -51,10 +47,11 @@ def returnAllHighestRating():
 # Returns the average rating of a chosen book
 @comRate_bp.route('/returnAverageBookRating/<string:isbn>/')
 def returnAverageBookRating(isbn):
+    oldAvg = db.session.query(RatingComments.ratingNumber).filter(RatingComments.isbn == isbn)
     avg = db.session.query(func.avg(RatingComments.ratingNumber)).filter(RatingComments.isbn == isbn).scalar() or 0
     qry = db.session.query(Books.bookTitle, Books.bookRating) \
         .filter(Books.isbn == isbn)
-    if avg > 0:
+    if avg != oldAvg:
         addAvg = update(Books).where(Books.isbn == isbn).\
             values(bookRating=avg)
     db.session.execute(addAvg)
