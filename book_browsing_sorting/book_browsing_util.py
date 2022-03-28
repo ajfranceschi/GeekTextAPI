@@ -1,7 +1,7 @@
 # ===============================================================
 # Created by: Antonio J. Franceschi
 #
-# This file will hod the database queries for GeekText API
+# This file contains the database queries for GeekText API
 # Book Browsing and Sorting feature
 # ===============================================================
 from models.db_book_model import Books, booksSchema
@@ -44,10 +44,26 @@ def getBooksStartingAt(position: int):
 def booksByGenre(genre: str):
     books = booksSchema.dump(getBooks())
     res = []
+    genres = {
+            "!Error": f"No books found for genre {genre}. Here are the available genres:"
+    }
+
     for book in books:
-        if book["bookGenre"] == genre:
+        bookGenre = book["bookGenre"]
+        bookGenreTitled = bookGenre.title()
+
+        if not genres.__contains__(bookGenreTitled):
+            genres[bookGenreTitled] = 1
+        else:
+            genres[bookGenreTitled] = genres[bookGenreTitled] + 1
+
+        if bookGenre == genre:
             res.append(book)
-    return res
+
+    if len(res) > 0:
+        return res
+    else:
+        return genres
 
 
 def booksWithRatingAtOrAbove(rating):

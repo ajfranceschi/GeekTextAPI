@@ -1,3 +1,10 @@
+# ===============================================================
+# Created by: Antonio J. Franceschi
+#
+# This file contains the routes for GeekText API
+# Book Browsing and Sorting feature
+# ===============================================================
+
 from flask import jsonify, request
 
 from models.db_book_model import booksSchema
@@ -72,11 +79,12 @@ def top_ten_books_sold():
             return jsonify(sortedBooks)
 
 
+# Route to rturn a books that match the provided Genre or a list of available Genres
 @bkBrowseSort_bp.route('/by-genre', methods = ['GET'])
 def books_by_genre():
-    genre = request.args['genre']
+    genre = request.args['genre'].title()
     books = book_browsing_util.booksByGenre(genre)
-    return jsonify(books)
+    return jsonify(books), 200
 
 
 @bkBrowseSort_bp.route('by-rating', methods = ['GET'])
