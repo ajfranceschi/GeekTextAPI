@@ -44,7 +44,7 @@ def addItemToCart(isbn: str, idUsers: str ):
             print(newCart.idShoppingCarts)
         except Exception as e:
             return e
-        return "User does not have a cart"
+        return "New User "
 
 
 def removeItemFromCart(isbn: str):
@@ -55,7 +55,7 @@ def removeItemFromCart(isbn: str):
             db.session.commit()
         except Exception as e:
             return e
-        return "Item was remove from your shopping cart", 202
+        return "Item was removed from your shopping cart", 202
 
 
 def getItems(idShoppingCarts: int ):

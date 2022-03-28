@@ -25,4 +25,4 @@ def remove_item(isbn: str):
 @cart_bp.route('/get_cart_items', methods = ['GET'])
 def get_cart_items():
     idShoppingCarts = request.form['idShoppingCarts']
-    return jsonify(getItems())
+    return jsonify(getItems(idShoppingCarts))
