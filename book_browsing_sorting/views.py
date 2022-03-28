@@ -13,60 +13,7 @@ PARAM_ERROR = "Params are not accurate. Please check your params", 400
 @bkBrowseSort_bp.route('/', methods = ['GET', 'OPTIONS'])
 def index():
     if request.method == 'OPTIONS':
-        root: str = 'http://localhost:81/book-browsing-sorting'
-        return {
-                "endpoints": {
-                        "/": {
-                                "URL": f'{root}',
-                                "methods": "GET, OPTIONS",
-                                "Description": {
-                                        "GET": "Returns text validating connectivity",
-                                        "OPTIONS": "Returns the endpoints and instructions of this API."
-                                },
-                                "Examples": {
-                                        "Check connectivity": f"GET {root}",
-                                        "Obtain endpoints": f'OPTIONS {root}'
-                                }
-                        },
-                        "get-books": {
-                                "URL": f'{root}/get-books',
-                                "methods": "GET",
-                                "Description": 'Returns all books in the database if no parameters are provided.  '
-                                               'Provide the parameter <quantity>(int) to obtain N amount of books'
-                                               ' starting at N position in the database. Provide the parameter <genre> '
-                                               'to obtain the books categorized as the provided genre.',
-                                "Params": {
-                                        "quantity": "Amount of books requested beginning at the database's <quantity> "
-                                                    "position."
-                                },
-                                "Examples": {
-                                        "Get all books": f'GET {root}/get-books',
-                                        "Get n amount of books": f'GET {root}/get-books?quantity=10',
-                                }
-                        },
-                        "genre": {
-                                "URL": f'{root}/genre',
-                                "methods": "GET",
-                                "Description": 'Provide the parameter <genre> to obtain the books categorized in the'
-                                               ' provided genre.',
-                                "Params": {
-                                        "genre": "Book genre to be searched.",
-                                },
-                                "Examples": {
-                                        "Get books by genre": f'GET {root}/genre?genre=sci-fi'
-                                }
-                        },
-                        "top-ten": {
-                                "URL": f'{root}/top-ten',
-                                "methods": "GET",
-                                "Description": 'Returns the top-ten sold books.',
-                                "Params": {},
-                                "Examples": {
-                                        "Get top-ten sold books": f'GET {root}/top-ten'
-                                }
-                        }
-                }
-        }
+        return book_browsing_util.getOptions()
     else:
         return "Books Browsing and Sorting root", 200
 
@@ -90,7 +37,7 @@ def get_books():
                     return SERVER_ERROR
                 elif books == "request-error":  # quantity provided is greater than amount of books in DB
                     return f"Quantity parameter should be less than {len(book_browsing_util.getBooks()) + 1}."
-                return jsonify(books)
+                return jsonify(booksSchema.dump(books))
             else:
                 return QUANTITY_ERROR
         except ValueError as e:
@@ -125,8 +72,13 @@ def top_ten_books_sold():
             return jsonify(sortedBooks)
 
 
-@bkBrowseSort_bp.route('/books-by-genre/genre', methods = ['POST'])
-@bkBrowseSort_bp.route('/books')
+@bkBrowseSort_bp.route('/by-genre', methods = ['GET'])
+def books_by_genre():
+    genre = request.args['genre']
+    books = book_browsing_util.booksByGenre(genre)
+    return jsonify(books)
+
+
 # UTILITY FUNCTIONS
 def sortByUnitsSold(book: dict):
     return book["unitsSold"]
