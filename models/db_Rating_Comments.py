@@ -35,13 +35,6 @@ class CombineSchemas(marshmallow.Schema):
         fields = ('bookTitle', 'ratingNumber', 'comments', 'createdAt', 'username')
 
 
-class PostSchema(marshmallow.Schema):
-    class Meta:
-        model = RatingComments
-        fields = ('idUsers', 'ratingNumber', 'comments')
-
-
 ratingComments_schema = RatingsCommentsSchema()
 ratingComments_many_schema = RatingsCommentsSchema(many=True)
 combineSchemas = CombineSchemas(many=True)
-postSchema = PostSchema(many=True)
