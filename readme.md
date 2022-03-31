@@ -4,14 +4,14 @@ ___
 
 ### Members
 
-| Name        | Feature   | 
-| :---        |    :---:   | 
-| Antonio Franceschi      | Book Browsing and Sorting     |
-| Ariadna Franchino   | Book Rating and Commenting      |
-| Carlos Gonzalez   | Book Details      |
-| Diamond Forbes | Wish List Management |
-| Kevin Forero | Profile Management |
-| Nicole Gentil | Shopping Cart |
+| Name                  |          Feature           | 
+|:----------------------|:--------------------------:|
+| Antonio J. Franceschi | Book Browsing and Sorting  |
+| Adriana Franchino     | Book Rating and Commenting |
+| Carlos Gonzalez       |        Book Details        |
+| Diamond Forbes        |    Wish List Management    |
+| Kevin Forero          |     Profile Management     |
+| Nicole Gentil         |       Shopping Cart        |
 
 ___
 
@@ -48,10 +48,14 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with: http://localhost:81/book-browsing-sorting
 
-| Endpoint  URL | Methods | Parameters | Description |
-| :---:         |   :---: |    ---     |     ---     |
-| / | GET<br>OPTIONS | *N/A* | **GET** request returns a string. <br>**OPTIONS** request returns the APIs options.|
-| /get-books | GET | **quantity***<br><sub>&emsp;&emsp;&emsp;_*optional_</sub>  | **No params**: Returns all books in DB. <br><br>**Quantity param is provided**: API will return N books beginning at N position in the database. <br><br> <mark>*If N > than amount of books between N and end of database, will return the books from N to database end.*</mark>| 
+|                Endpoint  URL                |    Methods     | Parameters                                                | Description                                                                                                                                                                                                                                                          |
+|:-------------------------------------------:|:--------------:|-----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                      /                      | GET<br>OPTIONS | *N/A*                                                     | **
+GET** request returns a string. <br>**                                                                                                                                                                                                                             |
+| OPTIONS** request returns the APIs options. |                |                                                           |                                                                                                                                                                                                                                                                      |
+|                 /get-books                  |      GET       | **quantity***<br><sub>&emsp;&emsp;&emsp;_*optional_</sub> | **No params**: Returns all books in DB. <br><br>**Quantity param is
+provided**: API will return N books beginning at N position in the database. <br><br> <mark>*If N > than amount of books between N and end of database, will return the books from N to database |
+|                end.*</mark>                 |                |                                                           |                                                                                                                                                                                                                                                                      |
 
 <br>
 
@@ -59,9 +63,9 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with:  http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description |
-| :---: | :---: | --- | --- |
-| / | _GET_ | _params_ | _description_ |
+| Endpoint URL | Methods | Parameters | Description   |
+|:------------:|:-------:|------------|---------------|
+|      /       |  _GET_  | _params_   | _description_ |
 
 <br>
 
@@ -69,9 +73,9 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with:  http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description |
-| :---: | :---: | --- | --- |
-| / | _GET_ | _params_ | _description_ |
+| Endpoint URL | Methods | Parameters | Description   |
+|:------------:|:-------:|------------|---------------|
+|      /       |  _GET_  | _params_   | _description_ |
 
 <br>
 
@@ -79,9 +83,9 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with:  http://localhost:81/book-details
 
-| Endpoint URL | Methods | Parameters | Description |
-| :---: | :---: | --- | --- |
-| / | _GET_ | _params_ | _description_ |
+| Endpoint URL | Methods | Parameters | Description   |
+|:------------:|:-------:|------------|---------------|
+|      /       |  _GET_  | _params_   | _description_ |
 
 <br>
 
@@ -89,16 +93,16 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with:  http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description |
-| :---: | :---: | --- | --- |
-| / | _GET_ | _params_ | _description_ |
+| Endpoint URL | Methods | Parameters | Description   |
+|:------------:|:-------:|------------|---------------|
+|      /       |  _GET_  | _params_   | _description_ |
 
 <br>
 
 ### Wish List Management
 
-> All URLs are prefixed with:  http://localhost:81/...
+> All URLs are prefixed with:  [link=http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description |
-| :---: | :---: | --- | --- |
-| / | _GET_ | _params_ | _description_ |
+| Endpoint URL | Methods | Parameters | Description   |
+|:------------:|:-------:|------------|---------------|
+|      /       |  _GET_  | _params_   | _description_ |
