@@ -21,7 +21,12 @@ VALUES (1, 'Nikole', 'Hannah-Jones', 'New York : One World',
        (2, 'Fu', 'Jiqi', 'Bradford, West Yorkshire : Emerald Publishing Limited',
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
        (3, 'Gabriella', 'Marfe', 'BENTHAM Science PUBLISHER',
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+       (4, 'J.K.', 'Rowling', 'Scholastic Press',
+        'J.K. Rowling is the author of the seven Harry Potter books, which have sold over 500 million copies, been translated into over 80 languages, and made into eight blockbuster films. She also wrote three short series companion volumes for charity, including Fantastic Beasts and Where to Find Them, which later became the inspiration for a new series of films. Harry’s story as a grown-up was later continued in a stage play, Harry Potter and the Cursed Child, which J.K. Rowling wrote with playwright Jack Thorne and director John Tiffany.
+In 2020, she returned to publishing for younger children with the fairy tale The Ickabog, which she initially published for free online for children in lockdown, later donating all her book royalties to help vulnerable groups affected by the Covid-19 pandemic.
+J.K. Rowling has received many awards and honors for her writing, including for her detective series written under the name Robert Galbraith. She supports a wide number of humanitarian causes through her charitable trust Volant, and is the founder of the children’s care reform charity Lumos.
+For as long as she can remember, J.K. Rowling wanted to be a writer, and is at her happiest in a room, making things up. She lives in Scotland with her family.');
 
 -- Books table structure
 CREATE TABLE Books
@@ -43,7 +48,7 @@ CREATE TABLE Books
 INSERT INTO Books (isbn, idAuthors, bookTitle, bookDescription, bookPrice, bookGenre, bookPublisher, bookYearPublished,
                    unitsSold, bookRating)
 VALUES ('9780567830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
+        'Hazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
         21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 6, 4.5),
        ('9780593230572', 1, 'The 1619 Project : a new origin story',
         'The animating idea of The 1619 Project is that our national narrative is more accurately told if we begin not on July 4, 1776, but in late August of 1619, when a ship arrived in Jamestown bearing a cargo of twenty to thirty enslaved people from Africa. Their arrival inaugurated a barbaric and unprecedented system of chattel slavery that would last for the next 250 years.',
@@ -57,24 +62,27 @@ VALUES ('9780567830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
        ('9781839822834', 2, 'The Fourth Industrial Revolution (Industry 4. 0)',
         'Exploring blockchain implementation in the supply chain --\r\nIndustry 4.0 adoption as a moderator of the impact of lean production practices on operational performance improvement --\r\nUnderstanding supply chain analytics capabilities and agility for data-rich environments --\r\nThe interplay between smart manufacturing technologies and work organization --\r\nThe impact of 3D printing implementation on stock returns --\r\nLeveraging open-standard interorganizational information systems for process adaptability and alignment --\r\nBlockchain-driven customer order management',
         34.99, 'Electronic', 'Bradford, West Yorkshire : Emerald Publishing Limited', 2019, 1, 5),
-       ('9780568830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
-        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 10, 4.5),
-       ('9780570830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
-        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 25, 4.5),
-       ('9780590830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
-        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 29, 4.5),
-       ('9780578830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
-        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 32, 4.5),
-       ('9780582830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
-        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 22, 4.5),
-       ('9780585830572', 3, 'HAZARDOUS WASTE MANAGEMENT AND HEALTH RISKS',
-        ' 	\r\nHazardous Waste Management and Health Risks presents a systematic overview of evaluating solid and hazardous waste management practices. The book introduces readers to the basic principles of hazardous waste management and progresses into related topics that allow managers to assess environmental quality. These topics include heavy metal pollution, reproductive biomarkers as signals of environmental pressure',
-        21, 'Electronic', 'BENTHAM Science PUBLISHER', 2020, 31, 4.5);
+       ('9780590353403', 4, 'Harry Potter and the Sorcerer''s Stone',
+        'Harry Potter spent ten long years living with Mr. and Mrs. Dursley, an aunt and uncle whose outrageous favoritism of their perfectly awful son Dudley leads to some of the most inspired dark comedy since Charlie and the Chocolate Factory. But fortunately for Harry, he''s about to be granted a scholarship to a unique boarding school called THE HOGWARTS SCHOOL OF WITCHCRAFT AND WIZARDRY, where he will become a school hero at the game of Quidditch (a kind of aerial soccer played high above the ground on broomsticks), he will make some wonderful friends, and, unfortunately, a few terrible enemies. For although he seems to be getting your run-of-the-mill boarding school experience (well, ok, even that''s pretty darn out of the ordinary), Harry Potter has a destiny that he was born to fulfill. A destiny that others would kill to keep him from.',
+        12.00, 'Fantasy', 'Scholastic Press', 1998, 1000000, 4.99),
+       ('9780439064866', 4, 'Harry Potter and the Chamber of Secrets',
+        'The summer after his first year at Hogwarts is worse than ever for Harry Potter. The Dursleys of Privet Drive are more horrible to him than ever before. And just when he thinks the endless summer vacation is over, a creature named Dobby the house-elf shows up issuing a grave warning to Harry not to go back to school or disaster will happen! Of course, Harry has to go back- and he does so in grand style, in a flying-car magicked by his friends Ron and Percy Weasley. But getting back to Hogwarts isn''t the cure Harry expects it to be. Almost immediately a student is found turned to stone, and then another. And somehow Harry stands accused. Could Harry Potter be the long-feared heir of Slytherin?Harry and friends Hermione and Fred are stretched to their limits in a desperate fight against Draco Malfoy and his gang, the hideously stuck-up new professor Gilderoy Lockheart, the malevolent owner of the diary of Tom Riddle, giant spiders, and perhaps even...Hagrid! This is the book that proves J.K. Rowling is a talent that''s here to stay!',
+        14.16, 'Fantasy', 'Scholastic', 1999, 1000000, 4.99),
+       ('9780439136358', 4, 'Harry Potter and the Prisoner of Azkaban',
+        'For twelve long years, the dread fortress of Azkaban held an infamous prisoner named Sirius Black. Convicted of killing thirteen people with a single curse, he was said to be the heir apparent to the Dark Lord, Voldemort.Now he has escaped, leaving only two clues as to where he might be headed: Harry Potter''s defeat of You-Know-Who was Black''s downfall as well. And the Azkaban guards heard Black muttering in his sleep, "He''s at Hogwarts . . . he''s at Hogwarts." Harry Potter isn''t safe, not even within the walls of his magical school, surrounded by his friends. Because on top of it all, there may well be a traitor in their midst.',
+        13.97, 'Fantasy', 'Scholastic', 1999, 1000000, 4.99),
+       ('9780439139595', 4, 'Harry Potter and the Goblet of Fire',
+        'The Triwizard Tournament is to be held at Hogwarts. Only wizards who are over seventeen are allowed to enter - but that doesn''t stop Harry dreaming that he will win the competition. Then at Halloween, when the Goblet of Fire makes its selection, Harry is amazed to find his name is one of those that the magical cup picks out. He will face death-defying tasks, dragons and Dark wizards, but with the help of his best friends, Ron and Hermione, he might just make it through - alive!',
+        18.84, 'Fantasy', 'Scholastic Press', 2000, 1000000, 4.99),
+       ('9780439358064', 4, 'Harry Potter and the Order of the Phoenix',
+        'There is a door at the end of a silent corridor. And it''s haunting Harry Potter''s dreams. Why else would he be waking in the middle of the night, screaming in terror?It''s not just the upcoming O.W.L. exams; a new teacher with a personality like poisoned honey; a venomous, disgruntled house-elf; or even the growing threat of He-Who-Must-Not-Be-Named. Now Harry Potter is faced with the unreliability of the very government of the magical world and the impotence of the authorities at Hogwarts.Despite this (or perhaps because of it), he finds depth and strength in his friends, beyond what even he knew; boundless loyalty; and unbearable sacrifice.',
+        13.69, 'Fantasy', 'Arthur A. Levine Books', 2003, 1000000, 4.97),
+       ('9780439784542', 4, 'Harry Potter and the Half-Blood Prince',
+        'The war against Voldemort is not going well; even Muggle governments are noticing. Ron scans the obituary pages of the Daily Prophet, looking for familiar names. Dumbledore is absent from Hogwarts for long stretches of time, and the Order of the Phoenix has already suffered losses. And yet...As in all wars, life goes on. Sixth-year students learn to Apparate - and lose a few eyebrows in the process. The Weasley twins expand their business. Teenagers flirt and fight and fall in love. Classes are never straightforward, though Harry receives some extraordinary help from the mysterious Half-Blood Prince.',
+        15.22, 'Fantasy', 'Arthur A. Levine Books', 2005, 1000000, 4.99),
+       ('9780545010221', 4, 'Harry Potter and the Deathly Hallows',
+        'We now present the seventh and final installment in the epic tale of Harry Potter.This gorgeous new edition in celebration of the 20th anniversary of the publication of Harry Potter and the Sorcerer''s Stone features a newly designed cover illustrated by Caldecott Medalist Brian Selznick, as well as the beloved original interior decorations by Mary GrandPré.',
+        21.74, 'Fantasy', 'Arthur A. Levine Books', 2007, 1000000, 4.99);;
 
 -- Rating Comments table structure
 CREATE TABLE RatingComments
@@ -86,7 +94,7 @@ CREATE TABLE RatingComments
     title            varchar(255) NOT NULL,
     comments         text,
     createdAt        datetime     NOT NULL,
-    modifiedAt       datetime     DEFAULT NULL,
+    modifiedAt       datetime DEFAULT NULL,
     status           tinyint(1)   NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -201,16 +209,19 @@ CREATE TABLE Users
 
 -- Users table data:
 
-INSERT INTO Users (idUsers, first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city, state,
+INSERT INTO Users (idUsers, first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city,
+                   state,
                    zipcode)
 VALUES (1, 'Diamond', 'Forbes', 'diamond', NULL, 'dforbes@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
        (2, 'Kevin', 'Forero', 'kforero', NULL, 'kforero@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
-       (3, 'Antonio', 'Franceschi', 'afranceschi', NULL, 'afranceschi@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
+       (3, 'Antonio', 'Franceschi', 'afranceschi', NULL, 'afranceschi@fiu.edu', '11200 SW 8th Street', NULL, 'Miami',
+        'FL',
         33199),
        (4, 'Ariadna', 'Franchino', 'afranchino', NULL, 'afranchino@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
         33199),
        (5, 'Nicole', 'Gentil', 'ngentil', NULL, 'ngentil@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199),
-       (6, 'Carlos', 'Gonzalez', 'cmdelapaz', NULL, 'cgonz683@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL', 33199);
+       (6, 'Carlos', 'Gonzalez', 'cmdelapaz', NULL, 'cgonz683@fiu.edu', '11200 SW 8th Street', NULL, 'Miami', 'FL',
+        33199);
 
 -- Wish List Items table structure
 CREATE TABLE WishListItems

@@ -10,6 +10,12 @@ class Authors(db.Model):
     authorPublisher = db.Column(db.String(255))
     authorBiography = db.Column(db.Text)
 
+    # Create an author with first name, last name, biography and publisher
+    def createAuthor(authorFirstName, authorLastName, authorPublisher, authorBiography):
+        new_author = Authors(authorFirstName=authorFirstName, authorLastName=authorLastName,
+                             authorPublisher=authorPublisher, authorBiography=authorBiography)
+        db.session.add(new_author)
+        db.session.commit()
 
 # JSON Schema
 class AuthorSchema(marshmallow.Schema):
