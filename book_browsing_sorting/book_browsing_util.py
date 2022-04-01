@@ -77,7 +77,7 @@ def booksWithRatingAtOrAbove(rating):
 
 
 def getOptions():
-    root: str = 'http://localhost:81/books'
+    root: str = 'http://localhost:81/books'  # TODO: Update VIEWS.py to reflect this URL
     return {
             "endpoints": {
                     "/": {
@@ -108,8 +108,17 @@ def getOptions():
                                     "Get n amount of books": f'GET {root}/get-books?quantity=10',
                             }
                     },
-                    "books-by-genre": {
-                            "URL": f'{root}/books-by-genre',
+                    "top-ten": {
+                            "URL": f'{root}/top-ten',
+                            "methods": "GET",
+                            "Description": 'Returns the top-ten sold books.',
+                            "Params": {},
+                            "Examples": {
+                                    "Get top-ten sold books": f'GET {root}/top-ten'
+                            }
+                    },
+                    "by-genre": {
+                            "URL": f'{root}/by-genre',
                             "methods": "GET",
                             "Description": 'Provide the parameter <genre> to obtain the books categorized in the'
                                            ' provided genre.',
@@ -120,13 +129,16 @@ def getOptions():
                                     "Get books by genre": f'GET {root}/genre?genre=sci-fi'
                             }
                     },
-                    "top-ten": {
-                            "URL": f'{root}/top-ten',
+                    "by-rating": {
+                            "URL": f'{root}/by-rating',
                             "methods": "GET",
-                            "Description": 'Returns the top-ten sold books.',
-                            "Params": {},
+                            "Description": 'Provide the parameter <genre> to obtain the books categorized in the'
+                                           ' provided genre.',
+                            "Params": {
+                                    "genre": "Book genre to be searched.",
+                            },
                             "Examples": {
-                                    "Get top-ten sold books": f'GET {root}/top-ten'
+                                    "Get books by genre": f'GET {root}/by-rating?genre=Fantasy'
                             }
                     }
             }
