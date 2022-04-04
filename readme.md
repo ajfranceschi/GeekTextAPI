@@ -7,7 +7,7 @@ ___
 | Name                  |          Feature           | 
 |:----------------------|:--------------------------:|
 | Antonio J. Franceschi | Book Browsing and Sorting  |
-| Adriana Franchino     | Book Rating and Commenting |
+| Ariadna Franchino     | Book Rating and Commenting |
 | Carlos Gonzalez       |        Book Details        |
 | Diamond Forbes        |    Wish List Management    |
 | Kevin Forero          |     Profile Management     |
