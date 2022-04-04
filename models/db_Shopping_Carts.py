@@ -8,8 +8,20 @@ class ShoppingCarts(db.Model):
     idUsers = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable = False)
 
 
-def __init__(self, id_users):
-    self.idUsers = id_users
+def __init__(self, idUsers):
+    self.idUsers = idUsers
+
+
+def newCart(idUsers: str):
+    userCart = ShoppingCarts(isUsers=idUsers)
+    if userCart:
+        try:
+            db.session.add(userCart)
+            db.session.commit()
+            return ShoppingCart_schema.dump(userCart)
+        except Exception as e:
+            return e
+        return "Unable to create a cart for user", 202
 
 
 # JSON Schema
