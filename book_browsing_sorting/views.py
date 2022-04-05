@@ -11,9 +11,11 @@ from models.db_book_model import booksSchema
 from . import bkBrowseSort_bp, book_browsing_util
 
 # CONSTANTS
-SERVER_ERROR = "Could not complete the request. Please try again later", 500
-QUANTITY_ERROR = "To obtain a list of books set the <quantity> parameter to an int greater than 0", 400
-PARAM_ERROR = "Params are not accurate. Please check your params", 400
+SERVER_ERROR = {'!Error': 'Could not complete the request. Please try again later'}, 500
+QUANTITY_ERROR = {'!Error': 'To obtain a list of books set the <quantity> parameter to an int greater than 0'}, 400
+PARAM_ERROR = {'!Error': 'Params are not accurate. Please check your params'}, 400
+FLOAT_ERROR = {'!Error': 'To obtain a list of books based on rating, set the <rating> parameter '
+                         'to a float greater than or equal to 0.0 and less than or equal to 5.0'}, 400
 
 
 # Root Book Browsing and Sorting endpoint: (*/book-browsing-sorting/)
@@ -31,7 +33,7 @@ def get_books():
     params = request.args
     print(len(params))
 
-    ## include arguments
+    # include arguments
     if len(request.args) > 0:
         for param in params:
             print(param)
@@ -89,9 +91,14 @@ def books_by_genre():
 
 @bkBrowseSort_bp.route('by-rating', methods = ['GET'])
 def by_rating():
-    rating = float(request.args['rating'])
-    books = book_browsing_util.booksWithRatingAtOrAbove(rating)
-    return jsonify(books)
+    try:
+        rating = float(request.args['rating'])
+        if rating < 0 or rating > 5:
+            return FLOAT_ERROR
+        books = book_browsing_util.booksWithRatingAtOrAbove(rating)
+        return jsonify(books)
+    except ValueError as e:
+        return FLOAT_ERROR
 
 
 # UTILITY FUNCTIONS
