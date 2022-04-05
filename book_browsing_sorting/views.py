@@ -81,7 +81,7 @@ def top_ten_books_sold():
             return jsonify(sortedBooks)
 
 
-# Route to rturn a books that match the provided Genre or a list of available Genres
+# Route to return a books that match the provided Genre or a list of available Genres
 @bkBrowseSort_bp.route('/by-genre', methods = ['GET'])
 def books_by_genre():
     genre = request.args['genre'].title()
