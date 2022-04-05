@@ -27,14 +27,16 @@ def index():
         return "Books Browsing and Sorting root", 200
 
 
-# Book Browsing and Sorting / Get All Books endpoint: (*/book-browsing-sorting/get-books)
+# Book Browsing and Sorting / Get All Books / Get X amount of Books beginning at X position:
+# (*/book-browsing-sorting/get-books)
 @bkBrowseSort_bp.route('/get-books')
 def get_books():
     params = request.args
     print(len(params))
 
     # include arguments
-    if len(request.args) > 0:
+    if len(params) > 0:
+        # Get X amount of Books beginning at X Position.
         for param in params:
             print(param)
         try:
@@ -53,13 +55,14 @@ def get_books():
             print(e)
             return PARAM_ERROR
     else:
+        # Get All Books in DB
         books = book_browsing_util.getBooks()
         if books == "error":
             return SERVER_ERROR
         return jsonify(booksSchema.dump(books)), 200
 
 
-# Book Browsing and Sorting / Get top 10 books sold endpoint: (*/book-browsing-sorting/top-ten-books-sold)
+# Book Browsing and Sorting / Get top 10 books sold endpoint: (*/book-browsing-sorting/top-ten)
 @bkBrowseSort_bp.route('/top-ten')
 def top_ten_books_sold():
     booksQuery = book_browsing_util.getBooks()
@@ -81,6 +84,7 @@ def top_ten_books_sold():
             return jsonify(sortedBooks)
 
 
+# Book Browsing and Sorting / Get Books by Genre: (*/book-browsing-sorting/by-genre)
 # Route to return books that match the provided Genre or a list of available Genres
 @bkBrowseSort_bp.route('/by-genre', methods = ['GET'])
 def books_by_genre():
@@ -89,6 +93,7 @@ def books_by_genre():
     return jsonify(books), 200
 
 
+# Book Browsing and Sorting / Get Books by Rating: (*/book-browsing-sorting/by-rating)
 # Route to return books that have a rating greater than or equal to the rating provided by user.
 @bkBrowseSort_bp.route('by-rating', methods = ['GET'])
 def by_rating():
