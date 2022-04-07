@@ -132,13 +132,12 @@ def getOptions():
                     "by-rating": {
                             "URL": f'{root}/by-rating',
                             "methods": "GET",
-                            "Description": 'Provide the parameter <genre> to obtain the books categorized in the'
-                                           ' provided genre.',
+                            "Description": 'Provide the parameter <rating> to obtain the books that match the provided rating and higher.',
                             "Params": {
-                                    "genre": "Book genre to be searched.",
+                                    "rating": "Float. Books that have a rating at or above the provided rating will be returned.",
                             },
                             "Examples": {
-                                    "Get books by genre": f'GET {root}/by-rating?genre=Fantasy'
+                                    "Get books by rating": f'GET {root}/by-rating?rating=4.5'
                             }
                     }
             }
