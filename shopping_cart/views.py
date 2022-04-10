@@ -1,6 +1,9 @@
 from flask import jsonify, request
+
+from models.db_Shopping_Carts import *
 from . import cart_bp
 from models.db_Shopping_Cart_Items import *
+
 
 
 @cart_bp.route('/')

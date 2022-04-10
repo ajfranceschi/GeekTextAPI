@@ -48,15 +48,13 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with: http://localhost:81/book-browsing-sorting
 
-|                Endpoint  URL                |    Methods     | Parameters                                                | Description                                                                                                                                                                                                                                                          |
-|:-------------------------------------------:|:--------------:|-----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                      /                      | GET<br>OPTIONS | *N/A*                                                     | **
-GET** request returns a string. <br>**                                                                                                                                                                                                                             |
-| OPTIONS** request returns the APIs options. |                |                                                           |                                                                                                                                                                                                                                                                      |
-|                 /get-books                  |      GET       | **quantity***<br><sub>&emsp;&emsp;&emsp;_*optional_</sub> | **No params**: Returns all books in DB. <br><br>**Quantity param is
-provided**: API will return N books beginning at N position in the database. <br><br> <mark>*If N > than amount of books between N and end of database, will return the books from N to database |
-|                end.*</mark>                 |                |                                                           |                                                                                                                                                                                                                                                                      |
-
+| Endpoint  URL |    Methods     | Parameters                                                | Description                                                                                                                                                                                                                                                                       |
+|:-------------:|:--------------:|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       /       | GET<br>OPTIONS | *N/A*                                                     | **GET** request returns a string. <br>**OPTIONS** request returns the APIs options.                                                                                                                                                                                               |
+|  /get-books   |      GET       | **quantity***<br><sub>&emsp;&emsp;&emsp;_*optional_</sub> | **No params**: Returns all books in DB. <br><br>**Quantity param is provided**: API will return N books beginning at N position in the database. <br><br> <mark>*If N > than amount of books between N and end of database, will return the books from N to database end.*</mark> |
+|   /top-ten    |      GET       | *None*                                                    | Returns top ten books based on units sold                                                                                                                                                                                                                                         |
+|   /by-genre   |      GET       | **genre**                                                 | Returns all books matching the genre specified in the "genre" param. <br> Example: `GET http://localhost:81/book-browsing-sorting/by-genre?genre=Fantasy`                                                                                                                         |
+|  /by-rating   |      GET       | **rating**                                                | Returns all books that match the rating specified in the "rating" (float) param and above.<br> Example: `GET http:/localhost:81/book-browsing-sorting/by-rating?rating=4.5`                                                                                                       |                                                                                                                                                                                    
 <br>
 
 ### Profile Management
@@ -73,19 +71,35 @@ provided**: API will return N books beginning at N position in the database. <br
 
 > All URLs are prefixed with:  http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
-
+|  Endpoint URL   | Methods | Parameters | Description                                                                                                                |
+|:---------------:|:-------:|------------|----------------------------------------------------------------------------------------------------------------------------|
+|        /        |  _GET_  | _params_   | _description_                                                                                                              |
+|    /add_item    |  POST   |   N/A      | Add book to the user existing shopping cart, if the user doesn't have have a shopping cart it will create one for the user |
+|  /remove_item   | DELETE  |  str:isbn  | Delete book from user shopping cart                                                                                        |
+| /get_cart_items |   GET   |    N/A     | Retrieve a list of books in the user shopping cart|
 <br>
 
 ### Book Details
 
 > All URLs are prefixed with:  http://localhost:81/book-details
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
+|   Endpoint URL    | Methods | Parameters                                                                                                                                                                                        | Description                                                                                                                                |
+|:-----------------:|:-------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+|         /         |   GET   | *N/A*                                                                                                                                                                                             | **GET** Request returns a string.                                                                                                          |
+|     /addBook      |  POST   | str: isbn<br/>int: idAuthors<br/>str: bookTitle<br/>str: bookDescription<br/>float: bookPrice<br/>str: bookGenre<br/>str: bookPublisher<br/>int: bookYearPublished<br/>int: unitsSold<br/>float: bookRating | **POST** Create a book with the book ISBN, book name, book description, price, author, genre, publisher , year published, and copies sold. |
+|     /getABook     |   GET   | str: isbs                                                                                                                                                                                         | **GET** Request returns a Book's details.                                                                                                  |
+| /getBooksByAuthor |   GET   | int: isAuthor                                                                                                                                                                                     | **GET** Request returns a list of books by and author                                                                                      |
+
+<br>
+
+### Author Details
+
+> All URLs are prefixed with:  http://localhost:81/authors
+
+| Endpoint URL | Methods | Parameters                                                                                    | Description                                                                    |
+|:------------:|:-------:|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+|      /       |   GET   | *N/A*                                                                                         | **GET** Request returns a string.                                                                                |
+|  /addAuthor  |  POST   | str: authorFirstName<br/>str: authorLastName<br/>str:authorPublisher<br/>str: authorBiography | **POST** Create an  author with first name, last name, biography and publisher |
 
 <br>
 

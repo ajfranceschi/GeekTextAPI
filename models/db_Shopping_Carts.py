@@ -8,8 +8,8 @@ class ShoppingCarts(db.Model):
     idUsers = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable = False)
 
 
-def __init__(self, id_users):
-    self.idUsers = id_users
+def __init__(self, idUsers):
+    self.idUsers = idUsers
 
 
 # JSON Schema
