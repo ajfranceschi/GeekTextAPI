@@ -11,12 +11,6 @@ def index():
     return "Shopping Cart route"
 
 
-@cart_bp.route('/create cart', methods = ['POST'])
-def create_cart():
-    idUsers = request.form['idUsers']
-    return jsonify(newCart(idUsers))
-
-
 # Created an Items object
 @cart_bp.route('/add_item', methods = ['POST'])
 def add_item():
