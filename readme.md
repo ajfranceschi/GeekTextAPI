@@ -105,11 +105,16 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 ### Book Rating and Commenting
 
-> All URLs are prefixed with:  http://localhost:81/...
+> All URLs are prefixed with:  http://localhost:81/comments-ratings
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
+|        Endpoint URL         | Methods | Parameters                    | Description                                                       |
+|:---------------------------:|:-------:|-------------------------------|-------------------------------------------------------------------|
+|              /              |  _GET_  | _params_                      | _description_                                                     |
+| /returnAllAverageBookRating |  _GET_  | _N/A_                         | Returns the average rating of all books                           |
+|  /returnAverageBookRating/  |  _GET_  | _str: isbn_                   | Returns the average rating of a chosen book                       |
+|  /returnBookHighestRating/  |  _GET_  | _str: isbn_                   | Returns the highest rated comments from selected book             |
+|   /returnAllHighestRating   |  _GET_  | _N/A_                         | Returns the highest rated comments from the whole book collection |
+|     /addCommentRating/      | _POST_  | _string:isbn/string:username_ | Allows user to add a rating and comment for chosen book           |
 
 <br>
 

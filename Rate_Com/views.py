@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from flask import jsonify, request
 from sqlalchemy import func, update
 from core import db
@@ -13,15 +12,6 @@ from models.db_user_model import Users
 @comRate_bp.route('/')
 def index():
     return "Ratings and Comments route"
-
-
-# Returns all ratings and comments made
-@comRate_bp.route('/returnAllRatings')
-def returnAllRating():
-    qry = db.session.query(RatingComments.ratingNumber, RatingComments.comments, RatingComments.createdAt, Users.username, RatingComments.title, Books.bookTitle) \
-        .join(Users, RatingComments.idUsers == Users.idUsers).join(Books, RatingComments.isbn == Books.isbn).all()
-    output = combineSchemas.dump(qry)
-    return jsonify(output)
 
 
 # Returns the highest rated comments from selected book
@@ -71,9 +61,9 @@ def returnAllBookAverageRating():
     return jsonify(output)
 
 
-# Allows user to add a rating and comment
-@comRate_bp.route('/addComment/<string:isbn>/<string:username>', methods=['POST'])
-def addComment(isbn, username):
+# Allows user to add a rating and comment for chosen book
+@comRate_bp.route('/addCommentRating/<string:isbn>/<string:username>', methods=['POST'])
+def addCommentRating(isbn, username):
     idUserExists = db.session.query(db.exists().where(Users.username == username)).scalar()
     # checks if user exists before adding comment/rating
     if idUserExists:
