@@ -47,6 +47,8 @@ class Users(db.Model):
         db.session.add(newUser)
         db.session.commit()
 
+
+
 # JSON Schema
 class UsersSchema(marshmallow.Schema):
 
