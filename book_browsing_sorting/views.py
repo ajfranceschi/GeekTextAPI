@@ -37,8 +37,6 @@ def get_books():
     # include arguments
     if len(params) > 0:
         # Get X amount of Books beginning at X Position.
-        for param in params:
-            print(param)
         try:
             quantity = int(request.args['quantity'])
             # validate quantity is an int:
@@ -51,7 +49,7 @@ def get_books():
                 return jsonify(booksSchema.dump(books))
             else:
                 return QUANTITY_ERROR
-        except ValueError as e:
+        except Exception as e:
             print(e)
             return PARAM_ERROR
     else:
@@ -88,25 +86,35 @@ def top_ten_books_sold():
 # Route to return books that match the provided Genre or a list of available Genres
 @bkBrowseSort_bp.route('/by-genre', methods = ['GET'])
 def books_by_genre():
-    genre = request.args['genre'].title()
-    books = book_browsing_util.booksByGenre(genre)
-    return jsonify(books), 200
+    try:
+        if len(request.args) > 0:
+            genre = request.args['genre'].title()
+            books = book_browsing_util.getBooksByGenre(genre)
+            return jsonify(books), 200
+        else:
+            return {'Error': 'Missing parameter',
+                    'Message': 'Request must include the parameter \'genre\' which is a string.'}
+    except Exception as e:
+        print(e)
+        return PARAM_ERROR
 
 
 # Book Browsing and Sorting / Get Books by Rating: (*/book-browsing-sorting/by-rating)
 # Route to return books that have a rating greater than or equal to the rating provided by user.
-@bkBrowseSort_bp.route('by-rating', methods = ['GET'])
+@bkBrowseSort_bp.route('/by-rating', methods = ['GET'])
 def by_rating():
     try:
         rating = float(request.args['rating'])
         if rating < 0 or rating > 5:
             return FLOAT_ERROR
-        books = book_browsing_util.booksWithRatingAtOrAbove(rating)
+        books = book_browsing_util.getBooksWithRatingAtOrAbove(rating)
         return jsonify(books)
-    except ValueError as e:
+    except Exception as e:
         return FLOAT_ERROR
 
 
 # UTILITY FUNCTIONS
+# helper function to sort books
 def sortByUnitsSold(book: dict):
-    return book["unitsSold"]
+    print(type(book['unitsSold']))
+    return book['unitsSold']

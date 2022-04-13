@@ -1,10 +1,9 @@
 # ===============================================================
-# Author: Carlos Gonzalez
+# Authors: Carlos Gonzalez, Antonio Franceschi
 #
 # This file contains the database queries for GeekText API
 # Book details
 # ===============================================================
-from flask import jsonify, abort
 from sqlalchemy.exc import SQLAlchemyError
 
 from core import db, marshmallow
