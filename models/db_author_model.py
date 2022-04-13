@@ -1,3 +1,9 @@
+# ===============================================================
+# Author: Carlos Gonzalez
+#
+# This file contains the database queries for GeekText API
+# Author details
+# ===============================================================
 from core import app, db, marshmallow
 
 

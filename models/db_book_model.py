@@ -1,4 +1,11 @@
-from flask import jsonify, abort
+# ===============================================================
+# Authors: Carlos Gonzalez, Antonio Franceschi
+#
+# This file contains the database queries for GeekText API
+# Book details
+# ===============================================================
+from sqlalchemy.exc import SQLAlchemyError
+
 from core import db, marshmallow
 from marshmallow import fields
 from models.db_author_model import AuthorSchema
@@ -34,25 +41,32 @@ class Books(db.Model):
         self.bookRating = bookRating
 
     # Retrieve a book’s details by the ISBN
-    def fetchABook(isbn):
-        queryBook = Books.query.filter_by(isbn = isbn).one_or_none()
-        if queryBook is not None:
-            bookSchema = BooksSchema(many = False)
-            bookReturned = bookSchema.dump(queryBook)
-            return bookReturned
-            # return jsonify(bookReturned)
-        else:
-            abort(404, 'Book not found for ID: {isbn}'.format(isbn = isbn))
+    def fetchABook(isbn: str):
+        try:
+            queryBook = Books.query.filter_by(isbn = isbn).one_or_none()
+            if queryBook is not None:
+                bookSchema = BooksSchema(many = False)
+                bookReturned = bookSchema.dump(queryBook)
+                return bookReturned
+            else:
+                return 'Book not found for ID: {isbn}'.format(isbn = isbn)
+        except SQLAlchemyError as e:
+            print(e)
+            return "QUERY_ERROR"
 
     # Retrieve a list of books associate with an author
-    def fetchListBooksByAuthor(idAuthor):
-        queryBooks = Books.query.filter_by(idAuthors = idAuthor).all()
-        if queryBooks:
-            bookSchema = BooksSchema(many = True)
-            booksReturned = bookSchema.dump(queryBooks)
-            return booksReturned
-        else:
-            abort(404, 'Author not found for ID: {idAuthors}'.format(idAuthors = idAuthor))
+    def fetchListBooksByAuthor(idAuthor: int):
+        try:
+            queryBooks = Books.query.filter_by(idAuthors = idAuthor).all()
+            if queryBooks:
+                bookSchema = BooksSchema(many = True)
+                booksReturned = bookSchema.dump(queryBooks)
+                return booksReturned
+            else:
+                return 'Author not found for ID: {idAuthors}'.format(idAuthors = idAuthor)
+        except SQLAlchemyError as e:
+            print(e)
+            return "QUERY_ERROR"
 
     # Create a book with all the attributes
     def createBook(_isbn, _idAuthors, _bookTitle, _bookDescription, _bookPrice, _bookGenre, _bookPublisher,

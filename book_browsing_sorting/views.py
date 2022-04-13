@@ -11,9 +11,11 @@ from models.db_book_model import booksSchema
 from . import bkBrowseSort_bp, book_browsing_util
 
 # CONSTANTS
-SERVER_ERROR = "Could not complete the request. Please try again later", 500
-QUANTITY_ERROR = "To obtain a list of books set the <quantity> parameter to an int greater than 0", 400
-PARAM_ERROR = "Params are not accurate. Please check your params", 400
+SERVER_ERROR = {'!Error': 'Could not complete the request. Please try again later'}, 500
+QUANTITY_ERROR = {'!Error': 'To obtain a list of books set the <quantity> parameter to an int greater than 0'}, 400
+PARAM_ERROR = {'!Error': 'Params are not accurate. Please check your params'}, 400
+FLOAT_ERROR = {'!Error': 'To obtain a list of books based on rating, set the <rating> parameter '
+                         'to a float greater than or equal to 0.0 and less than or equal to 5.0'}, 400
 
 
 # Root Book Browsing and Sorting endpoint: (*/book-browsing-sorting/)
@@ -25,16 +27,16 @@ def index():
         return "Books Browsing and Sorting root", 200
 
 
-# Book Browsing and Sorting / Get All Books endpoint: (*/book-browsing-sorting/get-books)
+# Book Browsing and Sorting / Get All Books / Get X amount of Books beginning at X position:
+# (*/book-browsing-sorting/get-books)
 @bkBrowseSort_bp.route('/get-books')
 def get_books():
     params = request.args
     print(len(params))
 
-    ## include arguments
-    if len(request.args) > 0:
-        for param in params:
-            print(param)
+    # include arguments
+    if len(params) > 0:
+        # Get X amount of Books beginning at X Position.
         try:
             quantity = int(request.args['quantity'])
             # validate quantity is an int:
@@ -47,17 +49,18 @@ def get_books():
                 return jsonify(booksSchema.dump(books))
             else:
                 return QUANTITY_ERROR
-        except ValueError as e:
+        except Exception as e:
             print(e)
             return PARAM_ERROR
     else:
+        # Get All Books in DB
         books = book_browsing_util.getBooks()
         if books == "error":
             return SERVER_ERROR
         return jsonify(booksSchema.dump(books)), 200
 
 
-# Book Browsing and Sorting / Get top 10 books sold endpoint: (*/book-browsing-sorting/top-ten-books-sold)
+# Book Browsing and Sorting / Get top 10 books sold endpoint: (*/book-browsing-sorting/top-ten)
 @bkBrowseSort_bp.route('/top-ten')
 def top_ten_books_sold():
     booksQuery = book_browsing_util.getBooks()
@@ -79,21 +82,39 @@ def top_ten_books_sold():
             return jsonify(sortedBooks)
 
 
-# Route to rturn a books that match the provided Genre or a list of available Genres
+# Book Browsing and Sorting / Get Books by Genre: (*/book-browsing-sorting/by-genre)
+# Route to return books that match the provided Genre or a list of available Genres
 @bkBrowseSort_bp.route('/by-genre', methods = ['GET'])
 def books_by_genre():
-    genre = request.args['genre'].title()
-    books = book_browsing_util.booksByGenre(genre)
-    return jsonify(books), 200
+    try:
+        if len(request.args) > 0:
+            genre = request.args['genre'].title()
+            books = book_browsing_util.getBooksByGenre(genre)
+            return jsonify(books), 200
+        else:
+            return {'Error': 'Missing parameter',
+                    'Message': 'Request must include the parameter \'genre\' which is a string.'}
+    except Exception as e:
+        print(e)
+        return PARAM_ERROR
 
 
-@bkBrowseSort_bp.route('by-rating', methods = ['GET'])
+# Book Browsing and Sorting / Get Books by Rating: (*/book-browsing-sorting/by-rating)
+# Route to return books that have a rating greater than or equal to the rating provided by user.
+@bkBrowseSort_bp.route('/by-rating', methods = ['GET'])
 def by_rating():
-    rating = float(request.args['rating'])
-    books = book_browsing_util.booksWithRatingAtOrAbove(rating)
-    return jsonify(books)
+    try:
+        rating = float(request.args['rating'])
+        if rating < 0 or rating > 5:
+            return FLOAT_ERROR
+        books = book_browsing_util.getBooksWithRatingAtOrAbove(rating)
+        return jsonify(books)
+    except Exception as e:
+        return FLOAT_ERROR
 
 
 # UTILITY FUNCTIONS
+# helper function to sort books
 def sortByUnitsSold(book: dict):
-    return book["unitsSold"]
+    print(type(book['unitsSold']))
+    return book['unitsSold']

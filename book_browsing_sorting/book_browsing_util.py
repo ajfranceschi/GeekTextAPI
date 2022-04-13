@@ -9,21 +9,20 @@ from sqlalchemy.exc import SQLAlchemyError
 
 
 # Get all books currently in the database
-def getBooks(arg: int = 0):
-    if arg == 0:
-        try:
-            return Books.query.all()
-        except SQLAlchemyError as e:
-            print(e)
-            return "error"
+def getBooks():
+    try:
+        return Books.query.all()
+    except SQLAlchemyError as e:
+        print(e)
+        return 'error'
 
 
 def getBooksStartingAt(position: int):
     selection: list = []
-    booksQueryResult: dict = getBooks()
+    booksQueryResult: list = getBooks()
     booksQueryLength: int = len(booksQueryResult)
 
-    if booksQueryResult != "error":
+    if booksQueryResult != 'error':
         if booksQueryLength >= position:
             left: int = position - 1
             right: int = left + position
@@ -36,21 +35,21 @@ def getBooksStartingAt(position: int):
 
             return selection
         else:
-            return "request-error"
+            return 'request-error'
     else:
         return booksQueryResult
 
 
-def booksByGenre(genre: str):
-    books = booksSchema.dump(getBooks())
-    res = []
-    genres = {
-            "!Error": f"No books found for genre {genre}. Here are the available genres:"
+def getBooksByGenre(genre: str):
+    books: list = booksSchema.dump(getBooks())
+    res: list = []
+    genres: dict = {
+            '!Error': f'No books found for genre \'{genre}\'. Here are the available genres:'
     }
 
     for book in books:
-        bookGenre = book["bookGenre"]
-        bookGenreTitled = bookGenre.title()
+        bookGenre: str = book['bookGenre']
+        bookGenreTitled: str = bookGenre.title()
 
         if not genres.__contains__(bookGenreTitled):
             genres[bookGenreTitled] = 1
@@ -66,7 +65,7 @@ def booksByGenre(genre: str):
         return genres
 
 
-def booksWithRatingAtOrAbove(rating):
+def getBooksWithRatingAtOrAbove(rating: float):
     books = booksSchema.dump(getBooks())
     res = []
     for book in books:
@@ -77,56 +76,69 @@ def booksWithRatingAtOrAbove(rating):
 
 
 def getOptions():
-    root: str = 'http://localhost:81/books'
+    root: str = 'http://localhost:81/book-browsing-sorting'
     return {
-            "endpoints": {
-                    "/": {
-                            "URL": f'{root}',
-                            "methods": "GET, OPTIONS",
-                            "Description": {
-                                    "GET": "Returns text validating connectivity",
-                                    "OPTIONS": "Returns the endpoints and instructions of this API."
+            'endpoints': {
+                    '/': {
+                            'URL': f'{root}',
+                            'methods': 'GET, OPTIONS',
+                            'Description': {
+                                    'GET': 'Returns text validating connectivity',
+                                    'OPTIONS': 'Returns the endpoints and instructions of this API.'
                             },
-                            "Examples": {
-                                    "Check connectivity": f"GET {root}",
-                                    "Obtain endpoints": f'OPTIONS {root}'
+                            'Examples': {
+                                    'Check connectivity': f'GET {root}',
+                                    'Obtain endpoints': f'OPTIONS {root}'
                             }
                     },
-                    "get-books": {
-                            "URL": f'{root}/get-books',
-                            "methods": "GET",
-                            "Description": 'Returns all books in the database if no parameters are provided.  '
+                    'get-books': {
+                            'URL': f'{root}/get-books',
+                            'methods': 'GET',
+                            'Description': 'Returns all books in the database if no parameters are provided.  '
                                            'Provide the parameter <quantity>(int) to obtain N amount of books'
                                            ' starting at N position in the database. Provide the parameter <genre> '
                                            'to obtain the books categorized as the provided genre.',
-                            "Params": {
-                                    "quantity": "Amount of books requested beginning at the database's <quantity> "
-                                                "position."
+                            'Params': {
+                                    'quantity': 'Amount of books requested beginning at the database\'s <quantity> '
+                                                'position.'
                             },
-                            "Examples": {
-                                    "Get all books": f'GET {root}/get-books',
-                                    "Get n amount of books": f'GET {root}/get-books?quantity=10',
+                            'Examples': {
+                                    'Get all books': f'GET {root}/get-books',
+                                    'Get n amount of books': f'GET {root}/get-books?quantity=10',
                             }
                     },
-                    "books-by-genre": {
-                            "URL": f'{root}/books-by-genre',
-                            "methods": "GET",
-                            "Description": 'Provide the parameter <genre> to obtain the books categorized in the'
+                    'top-ten': {
+                            'URL': f'{root}/top-ten',
+                            'methods': 'GET',
+                            'Description': 'Returns the top-ten sold books.',
+                            'Params': {},
+                            'Examples': {
+                                    'Get top-ten sold books': f'GET {root}/top-ten'
+                            }
+                    },
+                    'by-genre': {
+                            'URL': f'{root}/by-genre',
+                            'methods': 'GET',
+                            'Description': 'Provide the parameter <genre> to obtain the books categorized in the'
                                            ' provided genre.',
-                            "Params": {
-                                    "genre": "Book genre to be searched.",
+                            'Params': {
+                                    'genre': 'Book genre to be searched.',
                             },
-                            "Examples": {
-                                    "Get books by genre": f'GET {root}/genre?genre=sci-fi'
+                            'Examples': {
+                                    'Get books by genre': f'GET {root}/genre?genre=sci-fi'
                             }
                     },
-                    "top-ten": {
-                            "URL": f'{root}/top-ten',
-                            "methods": "GET",
-                            "Description": 'Returns the top-ten sold books.',
-                            "Params": {},
-                            "Examples": {
-                                    "Get top-ten sold books": f'GET {root}/top-ten'
+                    'by-rating': {
+                            'URL': f'{root}/by-rating',
+                            'methods': 'GET',
+                            'Description': 'Provide the parameter <rating> to obtain the books that match the '
+                                           'provided rating and higher.',
+                            'Params': {
+                                    'rating': 'Float. Books that have a rating at or above the provided rating will '
+                                              'be returned.',
+                            },
+                            'Examples': {
+                                    'Get books by rating': f'GET {root}/by-rating?rating=4.5'
                             }
                     }
             }
