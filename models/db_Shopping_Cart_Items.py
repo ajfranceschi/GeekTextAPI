@@ -16,7 +16,7 @@ def __init__(self, id_shopping_carts, isbn):
     self.isbn = isbn
 
 
-def addItemToCart(isbn: str, idUsers: str ):
+def addItemToCart(isbn: str, idUsers: str):
     cart = None
     # check for existence of cart
     try:
@@ -32,12 +32,12 @@ def addItemToCart(isbn: str, idUsers: str ):
         try:
             db.session.add(cart_item)
             db.session.commit()
-            result = ShoppingCartItems.query.filter_by(idShoppingCarts=idShoppingCarts)
+            result = ShoppingCartItems.query.filter_by(idShoppingCarts = idShoppingCarts)
             return ShoppingCartItems_many_schema.dump(result)
         except Exception as e:
             return e
     else:
-        newCart = ShoppingCarts(idUsers=idUsers)
+        newCart = ShoppingCarts(idUsers = idUsers)
         try:
             db.session.add(newCart)
             db.session.commit()
@@ -48,7 +48,7 @@ def addItemToCart(isbn: str, idUsers: str ):
 
 
 def removeItemFromCart(isbn: str):
-    item = ShoppingCartItems.query.filter_by(isbn=isbn).first()
+    item = ShoppingCartItems.query.filter_by(isbn = isbn).first()
     if item:
         try:
             db.session.delete(item)
@@ -58,9 +58,9 @@ def removeItemFromCart(isbn: str):
         return "Item was removed from your shopping cart", 202
 
 
-def getItems(idShoppingCarts: int ):
+def getItems(idShoppingCarts: int):
     try:
-        items = ShoppingCartItems.query.filter_by(idShoppingCarts=idShoppingCarts).all()
+        items = ShoppingCartItems.query.filter_by(idShoppingCarts = idShoppingCarts).all()
     except Exception as e:
         return e
     return ShoppingCartItems_many_schema.dump(items)

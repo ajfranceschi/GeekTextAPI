@@ -3,7 +3,6 @@ from . import profman_bp
 from models.db_user_model import Users
 
 
-
 @profman_bp.route('/')
 def index():
     return "Profile Management route"
@@ -13,18 +12,20 @@ def index():
 def getProfile():
     return {"Route": "Get Profile Management"}
 
+
 # @profman_bp.route('/getAll')
 # def getUsers():
 #     userQuery = Users.query.all()
 #     allUsers = Users_schema.dump(userQuery)
 #     return jsonify(allUsers), 200
 
-@profman_bp.route('/getUserInfo/<string:username>/', methods=['GET'])
+@profman_bp.route('/getUserInfo/<string:username>/', methods = ['GET'])
 def getUserInfo(username):
     returnUser = Users.infoByUser(username)
     return jsonify(returnUser)
 
-@profman_bp.route('/addUser', methods=['POST'])
+
+@profman_bp.route('/addUser', methods = ['POST'])
 def addUser():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -37,6 +38,7 @@ def addUser():
     state = request.form['state']
     zipcode = request.form['zipcode']
 
-    Users.createUser(first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city, state, zipcode)
-    response = Response("New User added!", 200, mimetype='application/json')
+    Users.createUser(first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city, state,
+                     zipcode)
+    response = Response("New User added!", 200, mimetype = 'application/json')
     return response
