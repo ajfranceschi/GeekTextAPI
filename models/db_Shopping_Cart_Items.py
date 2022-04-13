@@ -44,7 +44,7 @@ def addItemToCart(isbn: str, idUsers: str):
             print(newCart.idShoppingCarts)
         except Exception as e:
             return e
-        return "New User "
+        return "Item was added to the cart "
 
 
 def removeItemFromCart(isbn: str):
