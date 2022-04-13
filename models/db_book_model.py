@@ -1,5 +1,5 @@
 # ===============================================================
-# Authors: Carlos Gonzalez, Antonio Franceschi
+# Created by: Antonio J. Franceschi & Carlos Gonzalez
 #
 # This file contains the database queries for GeekText API
 # Book details
@@ -72,10 +72,9 @@ class Books(db.Model):
     def createBook(_isbn, _idAuthors, _bookTitle, _bookDescription, _bookPrice, _bookGenre, _bookPublisher,
                    _bookYearPublished, _unitsSold, _bookRating):
         new_book = Books(isbn = _isbn, idAuthors = _idAuthors, bookTitle = _bookTitle,
-                         bookDescription = _bookDescription,
-                         bookPrice = _bookPrice, bookGenre = _bookGenre, bookPublisher = _bookPublisher,
-                         bookYearPublished = _bookYearPublished,
-                         unitsSold = _unitsSold, bookRating = _bookRating)
+                         bookDescription = _bookDescription, bookPrice = _bookPrice, bookGenre = _bookGenre,
+                         bookPublisher = _bookPublisher, bookYearPublished = _bookYearPublished, unitsSold = _unitsSold,
+                         bookRating = _bookRating)
         db.session.add(new_book)
         db.session.commit()
 
@@ -94,9 +93,8 @@ class BooksSchema(marshmallow.Schema):
     author = fields.Nested(AuthorSchema)
 
     class Meta:
-        fields = ('isbn', 'author', 'bookTitle', 'bookDescription',
-                  'bookPrice', 'bookGenre', 'bookPublisher', 'bookYearPublished',
-                  'unitsSold', 'bookRating')
+        fields = ('isbn', 'author', 'bookTitle', 'bookDescription', 'bookPrice', 'bookGenre', 'bookPublisher',
+                  'bookYearPublished', 'unitsSold', 'bookRating')
 
 
 varList = {'isbn', 'author', 'bookTitle', 'bookDescription', 'bookPrice', 'bookGenre', 'bookPublisher',

@@ -8,16 +8,16 @@ from models.db_user_model import UsersSchema
 
 class RatingComments(db.Model):
     __tablename__ = 'RatingComments'
-    idRatingComments = db.Column(db.Integer, db.ForeignKey("Books.isbn"), primary_key=True, autoincrement=True,
-                                 nullable=False)
-    isbn = db.Column(db.String(55), nullable=False)
-    idUsers = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable=False)
-    ratingNumber = db.Column(db.Float, nullable=False)
-    title = db.Column(db.String(255), nullable=False)
+    idRatingComments = db.Column(db.Integer, db.ForeignKey("Books.isbn"), primary_key = True, autoincrement = True,
+                                 nullable = False)
+    isbn = db.Column(db.String(55), nullable = False)
+    idUsers = db.Column(db.Integer, db.ForeignKey("Users.idUsers"), nullable = False)
+    ratingNumber = db.Column(db.Float, nullable = False)
+    title = db.Column(db.String(255), nullable = False)
     comments = db.Column(db.Text)
-    createdAt = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    modifiedAt = db.Column(db.DateTime, default=datetime.utcnow())
-    status = db.Column(TINYINT, nullable=False)
+    createdAt = db.Column(db.DateTime, nullable = False, default = datetime.utcnow())
+    modifiedAt = db.Column(db.DateTime, default = datetime.utcnow())
+    status = db.Column(TINYINT, nullable = False)
 
     def __init__(self, ratingNumber, comments, title, isbn, idUsers, createdAt, modifiedAt, status):
         self.isbn = isbn
@@ -39,9 +39,8 @@ class RatingComments(db.Model):
 
 class RatingsCommentsSchema(marshmallow.Schema):
     class Meta:
-        fields = (
-            'idRatingComments', 'isbn', 'idUsers', 'ratingNumber', 'title', 'comments', 'createdAt', 'modifiedAt',
-            'status')
+        fields = ('idRatingComments', 'isbn', 'idUsers', 'ratingNumber', 'title', 'comments',
+                  'createdAt', 'modifiedAt', 'status')
 
 
 class CombineSchemas(marshmallow.Schema):
@@ -52,5 +51,5 @@ class CombineSchemas(marshmallow.Schema):
 
 
 ratingComments_schema = RatingsCommentsSchema()
-ratingComments_many_schema = RatingsCommentsSchema(many=True)
-combineSchemas = CombineSchemas(many=True)
+ratingComments_many_schema = RatingsCommentsSchema(many = True)
+combineSchemas = CombineSchemas(many = True)
