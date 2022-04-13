@@ -98,7 +98,6 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 | Endpoint URL | Methods | Parameters                                                                                    | Description                                                                    |
 |:------------:|:-------:|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-|      /       |   GET   | *N/A*                                                                                         | **GET** Request returns a string.                                                                                |
 |  /addAuthor  |  POST   | str: authorFirstName<br/>str: authorLastName<br/>str:authorPublisher<br/>str: authorBiography | **POST** Create an  author with first name, last name, biography and publisher |
 
 <br>
@@ -109,7 +108,6 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 |        Endpoint URL         | Methods | Parameters                    | Description                                                       |
 |:---------------------------:|:-------:|-------------------------------|-------------------------------------------------------------------|
-|              /              |  _GET_  | _params_                      | _description_                                                     |
 | /returnAllAverageBookRating |  _GET_  | _N/A_                         | Returns the average rating of all books                           |
 |  /returnAverageBookRating/  |  _GET_  | _str: isbn_                   | Returns the average rating of a chosen book                       |
 |  /returnBookHighestRating/  |  _GET_  | _str: isbn_                   | Returns the highest rated comments from selected book             |
