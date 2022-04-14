@@ -4,16 +4,6 @@ from models.db_user_model import Users
 from core import db
 
 
-@profman_bp.route('/')
-def index():
-    return "Profile Management route"
-
-
-@profman_bp.route('/getProf')
-def getProfile():
-    return {"Route": "Get Profile Management"}
-
-
 @profman_bp.route('/getUserInfo/<string:username>/', methods=['GET'])
 def getUserInfo(username):
     returnUser = Users.infoByUser(username)
