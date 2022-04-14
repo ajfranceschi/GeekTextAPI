@@ -1,5 +1,5 @@
 from core import db, marshmallow
-from models.db_Shopping_Carts import ShoppingCarts
+from models.db_Shopping_Carts import*
 
 
 # ShoppingCartItem table Model
@@ -47,15 +47,14 @@ def addItemToCart(isbn: str, idUsers: str ):
         return "Item was added to the cart "
 
 
-def removeItemFromCart(isbn: str):
-    item = ShoppingCartItems.query.filter_by(isbn=isbn).first()
-    if item:
-        try:
-            db.session.delete(item)
-            db.session.commit()
-        except Exception as e:
-            return e
+def removeItemFromCart(isbn: str, idShoppingCarts: int):
+    try:
+        cart = ShoppingCartItems.query.filter_by(idShoppingCarts=idShoppingCarts).first()
+        db.session.delete(cart)
+        db.session.commit()
         return "Item was removed from your shopping cart", 202
+    except Exception as e:
+        return e
 
 
 def getItems(idShoppingCarts: int ):
