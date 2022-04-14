@@ -37,7 +37,7 @@ class Users(db.Model):
             userReturned = userSchema.dump(userQuery)
             return userReturned
         else:
-            abort(404, 'Username provided does not exist'.format(username=username))
+            return 0
 
     def createUser(first_name_1, last_name_1, user_name, password_U, email_Address, address_Line1,
                    address_Line2, city_1, state_1, zipcode_1):
