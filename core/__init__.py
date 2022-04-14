@@ -1,3 +1,9 @@
+# ===============================================================
+# Created by: Antonio J. Franceschi
+#
+# This file contains application wide configurations such as Flask
+# and SQLAlchemy instances.
+# ===============================================================
 from flask import Flask
 from core.DB_CREDS import *
 from flask_sqlalchemy import SQLAlchemy

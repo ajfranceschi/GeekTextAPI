@@ -7,7 +7,7 @@ ___
 | Name                  |          Feature           | 
 |:----------------------|:--------------------------:|
 | Antonio J. Franceschi | Book Browsing and Sorting  |
-| Adriana Franchino     | Book Rating and Commenting |
+| Ariadna Franchino     | Book Rating and Commenting |
 | Carlos Gonzalez       |        Book Details        |
 | Diamond Forbes        |    Wish List Management    |
 | Kevin Forero          |     Profile Management     |
@@ -61,9 +61,13 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with:  http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
+|  Endpoint URL   |          Methods           | Parameters                                                                                                                                                                                               | Description                                                                                                                                                                                                                            |
+|:---------------:|:--------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  /getUserInfo   |           _GET_            | string:username                                                                                                                                                                                          | When submitting the endpoint, it is required to include a string with a valid username. Once it is provided, it will return all the information associated with that account                                                           |
+|    /addUser     |           _POST_           | string:first_name<br/>string:last_name<br/>string:username<br/>string:passwordU<br/>string:emailAddress<br/>string:addressLine1<br/>string:addressLine2<br/>string:city<br/>string:state<br/>int:zipcode | This endpoint requires the user to provide all the required parameters in order to add anew user into the database                                                                                                                     |
+|   /updateUser   |      _GET_<br/>_POST_      | int:idUsers<br/>Any other parameter/field the user wants to edit from an existing account except for the emailAdrress                                                                                    | The user includes the idUsers from a valid account within the endpoint. Then under the "body" section in postman, user will include the name of the field that needs to be updated plus the new value. emailAddress filed is immutable |
+| /getCreditCards |           _GET_            | int:idUsers                                                                                                                                                                                              | When an userID is provided, it will give a list of all the credits cards under this account                                                                                                                                            |
+| /addCreditCard  |           _POST_           | int:idUsers<br/>string:creditCardNumber<br/>int:expirationMonth<br/>int:expirationYear<br/>int:securityCode<br/>string:billingStreetAddress<br/>string:billingCity<br/>string:billingState<br/>int:billingZipCode      | Allow for a credit card to be added                                                                                                                                                                                                    |
 
 <br>
 
@@ -98,18 +102,21 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 | Endpoint URL | Methods | Parameters                                                                                    | Description                                                                    |
 |:------------:|:-------:|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-|      /       |   GET   | *N/A*                                                                                         | **GET** Request returns a string.                                                                                |
 |  /addAuthor  |  POST   | str: authorFirstName<br/>str: authorLastName<br/>str:authorPublisher<br/>str: authorBiography | **POST** Create an  author with first name, last name, biography and publisher |
 
 <br>
 
 ### Book Rating and Commenting
 
-> All URLs are prefixed with:  http://localhost:81/...
+> All URLs are prefixed with:  http://localhost:81/comments-ratings
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
+|        Endpoint URL         | Methods | Parameters                    | Description                                                       |
+|:---------------------------:|:-------:|-------------------------------|-------------------------------------------------------------------|
+| /returnAllAverageBookRating |  _GET_  | _N/A_                         | Returns the average rating of all books                           |
+|  /returnAverageBookRating/  |  _GET_  | _str: isbn_                   | Returns the average rating of a chosen book                       |
+|  /returnBookHighestRating/  |  _GET_  | _str: isbn_                   | Returns the highest rated comments from selected book             |
+|   /returnAllHighestRating   |  _GET_  | _N/A_                         | Returns the highest rated comments from the whole book collection |
+|     /addCommentRating/      | _POST_  | _string:isbn/string:username_ | Allows user to add a rating and comment for chosen book           |
 
 <br>
 

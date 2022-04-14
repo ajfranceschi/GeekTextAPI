@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from flask import jsonify, request
 from sqlalchemy import func, update
 from core import db
@@ -15,21 +14,14 @@ def index():
     return "Ratings and Comments route"
 
 
-# Returns all ratings and comments made
-@comRate_bp.route('/returnAllRatings')
-def returnAllRating():
-    qry = db.session.query(RatingComments.ratingNumber, RatingComments.comments, RatingComments.createdAt, Users.username, RatingComments.title, Books.bookTitle) \
-        .join(Users, RatingComments.idUsers == Users.idUsers).join(Books, RatingComments.isbn == Books.isbn).all()
-    output = combineSchemas.dump(qry)
-    return jsonify(output)
-
-
 # Returns the highest rated comments from selected book
 @comRate_bp.route('/returnBookHighestRating/<string:isbn>/')
 def returnBookHighestRating(isbn):
     findMax = db.session.query(func.max(RatingComments.ratingNumber)).filter(RatingComments.isbn == isbn)
-    qry = db.session.query(RatingComments.ratingNumber, RatingComments.comments, RatingComments.createdAt, Users.username, Books.bookTitle)\
-        .join(Users, RatingComments.idUsers == Users.idUsers).join(Books, RatingComments.isbn == Books.isbn)\
+    qry = db.session.query(RatingComments.ratingNumber, RatingComments.comments, RatingComments.createdAt,
+                           Users.username, Books.bookTitle) \
+        .join(Users, RatingComments.idUsers == Users.idUsers) \
+        .join(Books, RatingComments.isbn == Books.isbn) \
         .filter(RatingComments.isbn == isbn, RatingComments.ratingNumber == findMax)
     output = combineSchemas.dump(qry)
     return jsonify(output)
@@ -39,8 +31,9 @@ def returnBookHighestRating(isbn):
 @comRate_bp.route('/returnAllHighestRating')
 def returnAllHighestRating():
     findMax = db.session.query(func.max(RatingComments.ratingNumber))
-    qry = db.session.query(RatingComments.ratingNumber, RatingComments.comments, RatingComments.createdAt, Users.username, Books.bookTitle)\
-        .join(Users, RatingComments.idUsers == Users.idUsers).join(Books, RatingComments.isbn == Books.isbn)\
+    qry = db.session.query(RatingComments.ratingNumber, RatingComments.comments, RatingComments.createdAt,
+                           Users.username, Books.bookTitle) \
+        .join(Users, RatingComments.idUsers == Users.idUsers).join(Books, RatingComments.isbn == Books.isbn) \
         .filter(RatingComments.ratingNumber == findMax)
     output = combineSchemas.dump(qry)
     return jsonify(output)
@@ -55,8 +48,8 @@ def returnAverageBookRating(isbn):
         .filter(Books.isbn == isbn)
     # checks that the average rating already in database is different from the newly found average
     if avg != oldAvg:
-        addAvg = update(Books).where(Books.isbn == isbn).\
-            values(bookRating=avg)
+        addAvg = update(Books).where(Books.isbn == isbn). \
+            values(bookRating = avg)
         db.session.execute(addAvg)
         db.session.commit()
     output = booksSchema.dump(qry)
@@ -71,14 +64,15 @@ def returnAllBookAverageRating():
     return jsonify(output)
 
 
-# Allows user to add a rating and comment
-@comRate_bp.route('/addComment/<string:isbn>/<string:username>', methods=['POST'])
-def addComment(isbn, username):
+# Allows user to add a rating and comment for chosen book
+@comRate_bp.route('/addCommentRating/<string:isbn>/<string:username>', methods = ['POST'])
+def addCommentRating(isbn, username):
     idUserExists = db.session.query(db.exists().where(Users.username == username)).scalar()
     # checks if user exists before adding comment/rating
     if idUserExists:
         idUsers = db.session.query(Users.idUsers).filter(Users.username == username)
-        checkUserStatus = db.session.query(RatingComments).filter(RatingComments.idUsers == idUsers, RatingComments.isbn == isbn).count()
+        checkUserStatus = db.session.query(RatingComments).filter(RatingComments.idUsers == idUsers,
+                                                                  RatingComments.isbn == isbn).count()
         # checks if user has already left a review for specific book
         if checkUserStatus == 0:
             ratingNumber = request.form['ratingNumber']
