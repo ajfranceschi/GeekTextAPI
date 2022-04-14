@@ -1,5 +1,6 @@
 from core import db, marshmallow
 from models.db_Shopping_Carts import*
+from shopping_cart.views import*
 
 
 # ShoppingCartItem table Model
@@ -42,6 +43,7 @@ def addItemToCart(isbn: str, idUsers: str ):
             db.session.add(newCart)
             db.session.commit()
             print(newCart.idShoppingCarts)
+            add_item()
         except Exception as e:
             return e
         return "Item was added to the cart "
