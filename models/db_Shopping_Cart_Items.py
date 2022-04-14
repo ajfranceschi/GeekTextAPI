@@ -49,7 +49,7 @@ def addItemToCart(isbn: str, idUsers: str ):
 
 def removeItemFromCart(isbn: str, idShoppingCarts: int):
     try:
-        cart = ShoppingCartItems.query.filter_by(idShoppingCarts=idShoppingCarts).first()
+        cart = db.session.query(ShoppingCartItems).filter(idShoppingCarts==idShoppingCarts, isbn==isbn).first()
         db.session.delete(cart)
         db.session.commit()
         return "Item was removed from your shopping cart", 202
