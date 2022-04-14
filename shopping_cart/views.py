@@ -5,7 +5,6 @@ from . import cart_bp
 from models.db_Shopping_Cart_Items import *
 
 
-
 @cart_bp.route('/')
 def index():
     return "Shopping Cart route"

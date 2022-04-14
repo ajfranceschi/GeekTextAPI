@@ -14,7 +14,7 @@ def index():
     return "Books details Feature"
 
 
-@bookD_bp.route('/addBook', methods=['POST'])
+@bookD_bp.route('/addBook', methods = ['POST'])
 def addBook():
     try:
         isbn = str(request.args.get('isbn'))
@@ -30,14 +30,14 @@ def addBook():
 
         Books.createBook(isbn, idAuthors, bookTitle, bookDescription, bookPrice, bookGenre, bookPublisher,
                          bookYearPublished, unitsSold, bookRating)
-        response = Response("New book added!", 200, mimetype='application/json')
+        response = Response("New book added!", 200, mimetype = 'application/json')
         return response
     except ValueError as e:
         print(e)
         return 'Params are not accurate.', 400
 
 
-@bookD_bp.route('/getABook/', methods=['GET'])
+@bookD_bp.route('/getABook/', methods = ['GET'])
 def getABook():
     try:
         isbn = str(request.args.get('isbn'))
@@ -50,7 +50,7 @@ def getABook():
         return 'Params are not accurate.', 400
 
 
-@bookD_bp.route('/getBooksByAuthor/', methods=['GET'])
+@bookD_bp.route('/getBooksByAuthor/', methods = ['GET'])
 def getBooksByAuthor():
     try:
         idAuthor = int(request.args.get('idAuthor'))
