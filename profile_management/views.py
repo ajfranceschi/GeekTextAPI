@@ -4,6 +4,22 @@ from models.db_user_model import Users
 from core import db
 
 
+@profman_bp.route('/')
+def index():
+    return "Profile Management route"
+
+
+@profman_bp.route('/getProf')
+def getProfile():
+    return {"Route": "Get Profile Management"}
+
+
+# @profman_bp.route('/getAll')
+# def getUsers():
+#     userQuery = Users.query.all()
+#     allUsers = Users_schema.dump(userQuery)
+#     return jsonify(allUsers), 200
+
 @profman_bp.route('/getUserInfo/<string:username>/', methods=['GET'])
 def getUserInfo(username):
     returnUser = Users.infoByUser(username)
@@ -22,6 +38,7 @@ def addUser():
     city = request.form['city']
     state = request.form['state']
     zipcode = request.form['zipcode']
+
     Users.createUser(first_name, last_name, username, passwordU, emailAddress, addressLine1, addressLine2, city, state,
                      zipcode)
     response = Response("New User added!", 200, mimetype='application/json')

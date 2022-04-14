@@ -18,7 +18,7 @@ class Users(db.Model):
 
     # Constructor
     def __init__(self, first_name, last_name, username, passwordU, emailAddress, addressLine1,
-                 addressLine2, city, state,zipcode):
+                 addressLine2, city, state, zipcode):
         self.first_name = first_name
         self.last_name = last_name
         self.username = username
@@ -40,23 +40,20 @@ class Users(db.Model):
             abort(404, 'Username provided does not exist'.format(username=username))
 
     def createUser(first_name_1, last_name_1, user_name, password_U, email_Address, address_Line1,
-                 address_Line2, city_1, state_1,zipcode_1):
-        newUser = Users(first_name_1, last_name_1, user_name,
-                         password_U, email_Address, address_Line1,
-                         address_Line2, city_1, state_1, zipcode_1)
+                   address_Line2, city_1, state_1, zipcode_1):
+        newUser = Users(first_name_1, last_name_1, user_name, password_U, email_Address, address_Line1,
+                        address_Line2, city_1, state_1, zipcode_1)
         db.session.add(newUser)
         db.session.commit()
 
 
-
 # JSON Schema
 class UsersSchema(marshmallow.Schema):
-
     class Meta:
-        fields = ('idUsers', 'first_name', 'last_name', 'username', 'passwordU', 'emailAddress', 'addressLine1', 'addressLine2', 'city', 'state', 'zipcode')
+        fields = (
+            'idUsers', 'first_name', 'last_name', 'username', 'passwordU', 'emailAddress', 'addressLine1',
+            'addressLine2', 'city', 'state', 'zipcode')
 
 
 User_schema = UsersSchema()
 Users_schema = UsersSchema(many=True)
-
-

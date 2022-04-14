@@ -7,7 +7,7 @@ ___
 | Name                  |          Feature           | 
 |:----------------------|:--------------------------:|
 | Antonio J. Franceschi | Book Browsing and Sorting  |
-| Adriana Franchino     | Book Rating and Commenting |
+| Ariadna Franchino     | Book Rating and Commenting |
 | Carlos Gonzalez       |        Book Details        |
 | Diamond Forbes        |    Wish List Management    |
 | Kevin Forero          |     Profile Management     |
@@ -73,10 +73,12 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 > All URLs are prefixed with:  http://localhost:81/...
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
-
+|  Endpoint URL   | Methods | Parameters | Description                                                                                                                |
+|:---------------:|:-------:|------------|----------------------------------------------------------------------------------------------------------------------------|
+|        /        |  _GET_  | _params_   | _description_                                                                                                              |
+|    /add_item    |  POST   |   N/A      | Add book to the user existing shopping cart, if the user doesn't have have a shopping cart it will create one for the user |
+|  /remove_item   | DELETE  |  str:isbn  | Delete book from user shopping cart                                                                                        |
+| /get_cart_items |   GET   |    N/A     | Retrieve a list of books in the user shopping cart|
 <br>
 
 ### Book Details
@@ -98,18 +100,21 @@ Below is a list of the endpoints in this API, including their URL, method, param
 
 | Endpoint URL | Methods | Parameters                                                                                    | Description                                                                    |
 |:------------:|:-------:|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-|      /       |   GET   | *N/A*                                                                                         | **GET** Request returns a string.                                                                                |
 |  /addAuthor  |  POST   | str: authorFirstName<br/>str: authorLastName<br/>str:authorPublisher<br/>str: authorBiography | **POST** Create an  author with first name, last name, biography and publisher |
 
 <br>
 
 ### Book Rating and Commenting
 
-> All URLs are prefixed with:  http://localhost:81/...
+> All URLs are prefixed with:  http://localhost:81/comments-ratings
 
-| Endpoint URL | Methods | Parameters | Description   |
-|:------------:|:-------:|------------|---------------|
-|      /       |  _GET_  | _params_   | _description_ |
+|        Endpoint URL         | Methods | Parameters                    | Description                                                       |
+|:---------------------------:|:-------:|-------------------------------|-------------------------------------------------------------------|
+| /returnAllAverageBookRating |  _GET_  | _N/A_                         | Returns the average rating of all books                           |
+|  /returnAverageBookRating/  |  _GET_  | _str: isbn_                   | Returns the average rating of a chosen book                       |
+|  /returnBookHighestRating/  |  _GET_  | _str: isbn_                   | Returns the highest rated comments from selected book             |
+|   /returnAllHighestRating   |  _GET_  | _N/A_                         | Returns the highest rated comments from the whole book collection |
+|     /addCommentRating/      | _POST_  | _string:isbn/string:username_ | Allows user to add a rating and comment for chosen book           |
 
 <br>
 
