@@ -45,7 +45,7 @@ def addItemToCart(isbn: str, idUsers: str):
             print(newCart.idShoppingCarts)
             add_item()
         except Exception as e:
-            return e
+            return " Can't create a shopping cart with no user. "
         return "Item was added to the cart "
 
  
