@@ -18,10 +18,11 @@ def add_item():
     return jsonify(addItemToCart(isbn, idUsers))
 
 
-@cart_bp.route('/remove_item/<string:isbn>', methods = ['DELETE'])
-def remove_item(isbn: str):
+@cart_bp.route('/remove_item', methods = ['DELETE'])
+def remove_item():
     isbn = request.form['isbn']
-    return jsonify(removeItemFromCart(isbn))
+    idShoppingCarts = request.form['idShoppingCarts']
+    return jsonify(removeItemFromCart(isbn, idShoppingCarts))
 
 
 @cart_bp.route('/get_cart_items', methods = ['GET'])
